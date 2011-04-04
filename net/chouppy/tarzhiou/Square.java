@@ -29,6 +29,11 @@ public abstract class Square {
 		return neighbors.size();
 	}
 	
+	public SquareKey get_key ()
+	{
+		return (SquareKey)key.clone ();
+	}
+	
 	/**
 	 * Tells if this square is about to explode
 	 */

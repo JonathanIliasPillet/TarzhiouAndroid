@@ -8,7 +8,19 @@ public abstract class SquareSpace {
 	
 	protected Set<Square> squares;
 	
-	public abstract void do_bursts (); 
+	/**
+	 * Do bursts on many squares. The squares
+	 * are scanned in a specific order (see in subclass).
+	 * 
+	 * Depending on the scan policy, the increment will
+	 * stop after some partial work to be able to check
+	 * if any (or all) player died. If result is true,
+	 * this means the method must be called again.
+	 * 
+	 * @return false if not burst occurred, else true (in
+	 * which case another cycle should be done).
+	 */
+	public abstract boolean do_one_burst_increment (); 
 	
 	public SquareSpace () {
 		squares = new LinkedHashSet<Square> ();
@@ -49,16 +61,25 @@ public abstract class SquareSpace {
 		for (Square current_square : squares) 
 		{
 			result.append("square_");
-			result.append(current_square.hashCode());
+			if (current_square.get_key() instanceof NameSquareKey)
+				result.append (((NameSquareKey)current_square.get_key()).toString());
+			else
+				result.append(current_square.hashCode());
 			result.append(" [label = \"");
 			result.append(current_square.get_pieces_count());
 			result.append("\"];\n");
 			for (Square neighbor : current_square.get_neighbors())
 			{
 				result.append("square_");
-				result.append(current_square.hashCode());
+				if (current_square.get_key() instanceof NameSquareKey)
+					result.append (((NameSquareKey)current_square.get_key()).toString());
+				else
+					result.append(current_square.hashCode());
 				result.append(" -- square_");
-				result.append(neighbor.hashCode());
+				if (current_square.get_key() instanceof NameSquareKey)
+					result.append (((NameSquareKey)neighbor.get_key()).toString());
+				else
+					result.append(neighbor.hashCode());
 				result.append(";\n");
 			}
 		}

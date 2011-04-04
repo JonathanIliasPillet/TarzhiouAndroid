@@ -10,6 +10,11 @@ public class NameSquareKey extends SquareKey {
 		my_name = name;
 	}
 
+	public String toString ()
+	{
+		return new String (my_name);
+	}
+	
 	@Override
 	public Object clone() {
 		NameSquareKey result = new NameSquareKey();

@@ -65,42 +65,42 @@ public class Example {
 		Square b = my_square_space.get_square_from_key(new NameSquareKey ("b"));
 		
 		a.add_piece(players[0].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 		
 		b.add_piece(players[1].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 		
 		a.add_piece(players[0].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 		
 		b.add_piece(players[1].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 		
 		a.add_piece(players[0].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 		
 		b.add_piece(players[1].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 		
 		a.add_piece(players[0].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 		
 		b.add_piece(players[1].new_piece());
-		my_square_space.do_bursts();
+		while (my_square_space.do_one_burst_increment());
 		System.out.println (turn++);
 		System.out.println (my_square_space);
 	}

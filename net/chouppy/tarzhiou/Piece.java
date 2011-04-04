@@ -15,7 +15,7 @@ public class Piece {
 	public void change_owner (Player this_player)
 	{
 		Player old_owner = owner;
-		old_owner.loose_piece (this);
+		old_owner.loose_a_piece (this);
 		owner = this_player;
 		
 		if (my_listener != null)
