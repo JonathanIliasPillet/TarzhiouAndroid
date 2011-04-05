@@ -2,10 +2,10 @@ package net.chouppy.tarzhiou.sample_game.model;
 
 import java.util.Iterator;
 
-import net.chouppy.tarzhiou.BuildableSquareSpace;
+import net.chouppy.tarzhiou.BuildableCellSpace;
 import net.chouppy.tarzhiou.Game;
-import net.chouppy.tarzhiou.LinkeableSquare;
-import net.chouppy.tarzhiou.NameSquareKey;
+import net.chouppy.tarzhiou.LinkeableCell;
+import net.chouppy.tarzhiou.NameCellKey;
 import net.chouppy.tarzhiou.Player;
 import net.chouppy.tarzhiou.ReadOnlyPiece;
 import net.chouppy.tarzhiou.listeners.GameListener;
@@ -19,28 +19,28 @@ public class SampleGameModel extends Game implements PlayerListener {
 	{
 		super ();
 		
-		BuildableSquareSpace sp = new BuildableSquareSpace();
-		square_space = sp;
+		BuildableCellSpace sp = new BuildableCellSpace();
+		cell_space = sp;
 		
-		LinkeableSquare c1 = new LinkeableSquare(new NameSquareKey("center1"));
-		LinkeableSquare c2 = new LinkeableSquare(new NameSquareKey("center2"));
-		LinkeableSquare c3 = new LinkeableSquare(new NameSquareKey("center3"));
-		LinkeableSquare p11 = new LinkeableSquare(new NameSquareKey("peripheral11"));
-		LinkeableSquare p12 = new LinkeableSquare(new NameSquareKey("peripheral12"));
-		LinkeableSquare p21 = new LinkeableSquare(new NameSquareKey("peripheral21"));
-		LinkeableSquare p22 = new LinkeableSquare(new NameSquareKey("peripheral22"));
-		LinkeableSquare p31 = new LinkeableSquare(new NameSquareKey("peripheral31"));
-		LinkeableSquare p32 = new LinkeableSquare(new NameSquareKey("peripheral32"));
+		LinkeableCell c1 = new LinkeableCell(new NameCellKey("center1"));
+		LinkeableCell c2 = new LinkeableCell(new NameCellKey("center2"));
+		LinkeableCell c3 = new LinkeableCell(new NameCellKey("center3"));
+		LinkeableCell p11 = new LinkeableCell(new NameCellKey("peripheral11"));
+		LinkeableCell p12 = new LinkeableCell(new NameCellKey("peripheral12"));
+		LinkeableCell p21 = new LinkeableCell(new NameCellKey("peripheral21"));
+		LinkeableCell p22 = new LinkeableCell(new NameCellKey("peripheral22"));
+		LinkeableCell p31 = new LinkeableCell(new NameCellKey("peripheral31"));
+		LinkeableCell p32 = new LinkeableCell(new NameCellKey("peripheral32"));
 		
-		sp.add_square(c1);
-		sp.add_square(c2);
-		sp.add_square(c3);
-		sp.add_square(p11);
-		sp.add_square(p12);
-		sp.add_square(p21);
-		sp.add_square(p22);
-		sp.add_square(p31);
-		sp.add_square(p32);
+		sp.add_cell(c1);
+		sp.add_cell(c2);
+		sp.add_cell(c3);
+		sp.add_cell(p11);
+		sp.add_cell(p12);
+		sp.add_cell(p21);
+		sp.add_cell(p22);
+		sp.add_cell(p31);
+		sp.add_cell(p32);
 		
 		// Center triangle link
 		c1.link_to(c2);
@@ -102,7 +102,7 @@ public class SampleGameModel extends Game implements PlayerListener {
 
 	@Override
 	protected void process_bursts() {
-		square_space.do_all_bursts();
+		cell_space.do_all_bursts();
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class SampleGameModel extends Game implements PlayerListener {
 	
 			if (count_alive_players () == 1)
 			{
-				square_space.stop_doing_all_bursts();
+				cell_space.stop_doing_all_bursts();
 				win (get_an_alive_player());
 			}
 		}

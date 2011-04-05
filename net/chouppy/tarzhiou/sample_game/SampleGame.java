@@ -22,7 +22,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import net.chouppy.tarzhiou.Game;
-import net.chouppy.tarzhiou.NameSquareKey;
+import net.chouppy.tarzhiou.NameCellKey;
 import net.chouppy.tarzhiou.Player;
 import net.chouppy.tarzhiou.listeners.GameListener;
 import net.chouppy.tarzhiou.sample_game.model.SampleGameModel;
@@ -99,11 +99,11 @@ public class SampleGame implements MouseListener, GameListener {
 		{
 			Element e = context.getElement(graphicsNode);
 			String name = e.getAttribute("id");
-			game_model.play(new NameSquareKey (name), game_model.get_current_player());
-			System.out.println (game_model.get_square_space_view().toString());
+			game_model.play(new NameCellKey (name), game_model.get_current_player());
+			System.out.println (game_model.get_cell_space_view().toString());
 			
 			/*
-			 * TODO : find a way to change a square
+			 * TODO : find a way to change a cell
 			 */
 			/*SVGStylableElement e = (SVGStylableElement)context.getElement(graphicsNode);
 			e.getStyle().setProperty("fill", "red", "");

@@ -1,21 +1,21 @@
 package net.chouppy.tarzhiou;
 
-import net.chouppy.tarzhiou.listeners.LinkeableSquareListener;
+import net.chouppy.tarzhiou.listeners.LinkeableCellListener;
 
 /**
- * A square space which can be built. 
+ * A cell space which can be built. 
  * 
- * Square space must be validated before running any burst.
+ * Cell space must be validated before running any burst.
  * 
  * @author Jonathan ILIAS-PILLET
  */
-public class BuildableSquareSpace 
-	extends DisorderedSquareSpace 
-	implements LinkeableSquareListener {
+public class BuildableCellSpace 
+	extends DisorderedCellSpace 
+	implements LinkeableCellListener {
 
 	private boolean validated;
 	
-	public BuildableSquareSpace ()
+	public BuildableCellSpace ()
 	{
 		validated = false;
 	}
@@ -35,15 +35,15 @@ public class BuildableSquareSpace
 		super.stop_doing_all_bursts();
 	}
 	
-	public void add_square (LinkeableSquare this_square) {
-		this_square.set_linkeable_listener(this);
+	public void add_cell (LinkeableCell this_cell) {
+		this_cell.set_linkeable_listener(this);
 		validated = false;
-		super.add_square(this_square);
+		super.add_cell(this_cell);
 	}
 
-	public void link_squares (LinkeableSquare a, LinkeableSquare b) {
+	public void link_cells (LinkeableCell a, LinkeableCell b) {
 		validated = false;
-		super.link_squares(a, b);
+		super.link_cells(a, b);
 	}
 	
 	@Override
@@ -55,7 +55,7 @@ public class BuildableSquareSpace
 	}
 
 	@Override
-	public void on_link(LinkeableSquare me, LinkeableSquare other) {
+	public void on_link(LinkeableCell me, LinkeableCell other) {
 		validated = false;		
 	}
 }

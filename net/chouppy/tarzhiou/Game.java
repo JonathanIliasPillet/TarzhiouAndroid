@@ -6,7 +6,7 @@ import java.util.Set;
 import net.chouppy.tarzhiou.listeners.GameListener;
 
 public abstract class Game {
-	protected RunnableSquareSpace square_space = null;
+	protected RunnableCellSpace cell_space = null;
 	protected Set<Player> players;
 	protected Set<Piece> pieces;
 	private boolean started;
@@ -19,22 +19,22 @@ public abstract class Game {
 		my_listener = null;
 	}
 	
-	public ReadOnlySquareSpace get_square_space_view () {
-		assert (square_space != null);
-		return square_space;
+	public ReadOnlyCellSpace get_cell_space_view () {
+		assert (cell_space != null);
+		return cell_space;
 	}
 	
-	public boolean play (Square this_square, Player this_player) {
-		assert (square_space != null);
+	public boolean play (Cell this_cell, Player this_player) {
+		assert (cell_space != null);
 		assert (started);
 		
 		boolean result;
 		
-		if ((this_square.get_pieces_count() == 0) ||
-				this_player.equals(this_square.get_pieces_owner())) 
+		if ((this_cell.get_pieces_count() == 0) ||
+				this_player.equals(this_cell.get_pieces_owner())) 
 		{
 			// adds the new piece 
-			this_square.add_piece(this_player.new_piece());
+			this_cell.add_piece(this_player.new_piece());
 			
 			// do bursts
 			process_bursts ();
@@ -50,13 +50,13 @@ public abstract class Game {
 		return result;
 	}
 	
-	public boolean play (SquareKey this_square_key, Player this_player) {
-		assert (square_space != null);
+	public boolean play (CellKey this_cell_key, Player this_player) {
+		assert (cell_space != null);
 		assert (started);
-		Square this_square = square_space.get_square_from_key(this_square_key);
+		Cell this_cell = cell_space.get_cell_from_key(this_cell_key);
 		
-		if (this_square != null)
-			return play (this_square, this_player);
+		if (this_cell != null)
+			return play (this_cell, this_player);
 		else
 			return false;
 	}

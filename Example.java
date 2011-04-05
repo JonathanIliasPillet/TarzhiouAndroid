@@ -1,7 +1,7 @@
 import net.chouppy.tarzhiou.*;
 
 public class Example {
-	private DisorderedSquareSpace my_square_space;
+	private DisorderedCellSpace my_cell_space;
 	private Player[] players;
 	
 	public static void main (String [] args)
@@ -13,28 +13,28 @@ public class Example {
 	
 	public Example ()
 	{
-		BuildableSquareSpace square_space = new BuildableSquareSpace();
-		my_square_space = square_space;
+		BuildableCellSpace cell_space = new BuildableCellSpace();
+		my_cell_space = cell_space;
 		
-		LinkeableSquare a = new LinkeableSquare(new NameSquareKey("a"));
-		LinkeableSquare b = new LinkeableSquare(new NameSquareKey("b"));
-		LinkeableSquare c = new LinkeableSquare(new NameSquareKey("c"));
-		LinkeableSquare d = new LinkeableSquare(new NameSquareKey("d"));
-		LinkeableSquare e = new LinkeableSquare(new NameSquareKey("e"));
-		LinkeableSquare f = new LinkeableSquare(new NameSquareKey("f"));
-		LinkeableSquare g = new LinkeableSquare(new NameSquareKey("g"));
-		LinkeableSquare h = new LinkeableSquare(new NameSquareKey("h"));
-		LinkeableSquare i = new LinkeableSquare(new NameSquareKey("i"));
+		LinkeableCell a = new LinkeableCell(new NameCellKey("a"));
+		LinkeableCell b = new LinkeableCell(new NameCellKey("b"));
+		LinkeableCell c = new LinkeableCell(new NameCellKey("c"));
+		LinkeableCell d = new LinkeableCell(new NameCellKey("d"));
+		LinkeableCell e = new LinkeableCell(new NameCellKey("e"));
+		LinkeableCell f = new LinkeableCell(new NameCellKey("f"));
+		LinkeableCell g = new LinkeableCell(new NameCellKey("g"));
+		LinkeableCell h = new LinkeableCell(new NameCellKey("h"));
+		LinkeableCell i = new LinkeableCell(new NameCellKey("i"));
 		
-		square_space.add_square(a);
-		square_space.add_square(b);
-		square_space.add_square(c);
-		square_space.add_square(d);
-		square_space.add_square(e);
-		square_space.add_square(f);
-		square_space.add_square(g);
-		square_space.add_square(h);
-		square_space.add_square(i);
+		cell_space.add_cell(a);
+		cell_space.add_cell(b);
+		cell_space.add_cell(c);
+		cell_space.add_cell(d);
+		cell_space.add_cell(e);
+		cell_space.add_cell(f);
+		cell_space.add_cell(g);
+		cell_space.add_cell(h);
+		cell_space.add_cell(i);
 		
 		a.link_to(b);
 		b.link_to(c);
@@ -61,47 +61,47 @@ public class Example {
 	public void start ()
 	{
 		int turn = 0;
-		Square a = my_square_space.get_square_from_key(new NameSquareKey ("a"));
-		Square b = my_square_space.get_square_from_key(new NameSquareKey ("b"));
+		Cell a = my_cell_space.get_cell_from_key(new NameCellKey ("a"));
+		Cell b = my_cell_space.get_cell_from_key(new NameCellKey ("b"));
 		
 		a.add_piece(players[0].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 		
 		b.add_piece(players[1].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 		
 		a.add_piece(players[0].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 		
 		b.add_piece(players[1].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 		
 		a.add_piece(players[0].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 		
 		b.add_piece(players[1].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 		
 		a.add_piece(players[0].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 		
 		b.add_piece(players[1].new_piece());
-		while (my_square_space.do_one_burst_increment());
+		while (my_cell_space.do_one_burst_increment());
 		System.out.println (turn++);
-		System.out.println (my_square_space);
+		System.out.println (my_cell_space);
 	}
 }

@@ -1,8 +1,8 @@
 package net.chouppy.tarzhiou;
 
-public abstract class RunnableSquareSpace extends ReadOnlySquareSpace {
+public abstract class RunnableCellSpace extends ReadOnlyCellSpace {
 	/**
-	 * Do bursts on many squares. The squares
+	 * Do bursts on many cells. The cells
 	 * are scanned in a specific order (see in subclass).
 	 * 
 	 * Depending on the scan policy, the increment will

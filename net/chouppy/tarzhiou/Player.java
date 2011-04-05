@@ -41,7 +41,7 @@ public class Player extends ReadOnlyPlayer {
 	
 	/**
 	 * This player retracts from game. Its pieces remains
-	 * on square space, but the player won't player anymore.
+	 * on cell space, but the player won't player anymore.
 	 */
 	public void retract ()
 	{

@@ -3,11 +3,11 @@ package net.chouppy.tarzhiou;
 import java.util.Iterator;
 
 /**
- * A squarespace which has a deterministic but undefined burst scan order 
+ * A cell space which has a deterministic but undefined burst scan order 
  * 
  * @author Jonathan ILIAS-PILLET
  */
-public abstract class DisorderedSquareSpace extends RunnableSquareSpace {
+public abstract class DisorderedCellSpace extends RunnableCellSpace {
 
 	private boolean continue_bursts;
 
@@ -15,9 +15,9 @@ public abstract class DisorderedSquareSpace extends RunnableSquareSpace {
 	public boolean do_one_burst_increment() {
 		boolean result = false;
 
-		for (Square current_square : squares) {
-			if (current_square.is_overloaded()) {
-				current_square.burst();
+		for (Cell current_cell : cells) {
+			if (current_cell.is_overloaded()) {
+				current_cell.burst();
 				result = true;
 			}
 		}
@@ -27,18 +27,18 @@ public abstract class DisorderedSquareSpace extends RunnableSquareSpace {
 
 	@Override
 	public void do_all_bursts() {
-		Square current_square;
+		Cell current_cell;
 		// tells if there is at least one burst in a turn
 		boolean at_least_one_burst = false;
 
 		continue_bursts = true;
 		do {
-			Iterator<Square> i = squares.iterator();
+			Iterator<Cell> i = cells.iterator();
 			at_least_one_burst = false;
 			while (i.hasNext() && continue_bursts) {
-				current_square = i.next();
-				if (current_square.is_overloaded()) {
-					current_square.burst();
+				current_cell = i.next();
+				if (current_cell.is_overloaded()) {
+					current_cell.burst();
 					at_least_one_burst = true;
 				}
 			}

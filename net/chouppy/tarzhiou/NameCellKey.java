@@ -1,12 +1,12 @@
 package net.chouppy.tarzhiou;
 
-public class NameSquareKey extends SquareKey {
+public class NameCellKey extends CellKey {
 	private String my_name;
 	
-	private NameSquareKey () {	
+	private NameCellKey () {	
 	}
 	
-	public NameSquareKey (String name) {
+	public NameCellKey (String name) {
 		my_name = name;
 	}
 
@@ -17,7 +17,7 @@ public class NameSquareKey extends SquareKey {
 	
 	@Override
 	public Object clone() {
-		NameSquareKey result = new NameSquareKey();
+		NameCellKey result = new NameCellKey();
 		result.my_name = new String (my_name);
 		return result;
 	}
@@ -32,7 +32,7 @@ public class NameSquareKey extends SquareKey {
 		if (o == null)
 			return false;
 		else
-		if (!(o instanceof NameSquareKey))
+		if (!(o instanceof NameCellKey))
 			return false;
 		else
 		if (o.hashCode() == hashCode())
