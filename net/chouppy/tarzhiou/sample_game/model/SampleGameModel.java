@@ -7,9 +7,11 @@ import net.chouppy.tarzhiou.Game;
 import net.chouppy.tarzhiou.LinkeableSquare;
 import net.chouppy.tarzhiou.NameSquareKey;
 import net.chouppy.tarzhiou.Player;
+import net.chouppy.tarzhiou.ReadOnlyPiece;
+import net.chouppy.tarzhiou.listeners.GameListener;
+import net.chouppy.tarzhiou.listeners.PlayerListener;
 
-public class SampleGameModel extends Game {
-	protected BuildableSquareSpace square_space;
+public class SampleGameModel extends Game implements PlayerListener {
 	protected Iterator<Player> player_turn;
 	protected Player current_player;
 	
@@ -17,7 +19,8 @@ public class SampleGameModel extends Game {
 	{
 		super ();
 		
-		square_space = new BuildableSquareSpace();
+		BuildableSquareSpace sp = new BuildableSquareSpace();
+		square_space = sp;
 		
 		LinkeableSquare c1 = new LinkeableSquare(new NameSquareKey("center1"));
 		LinkeableSquare c2 = new LinkeableSquare(new NameSquareKey("center2"));
@@ -29,15 +32,15 @@ public class SampleGameModel extends Game {
 		LinkeableSquare p31 = new LinkeableSquare(new NameSquareKey("peripheral31"));
 		LinkeableSquare p32 = new LinkeableSquare(new NameSquareKey("peripheral32"));
 		
-		square_space.add_square(c1);
-		square_space.add_square(c2);
-		square_space.add_square(c3);
-		square_space.add_square(p11);
-		square_space.add_square(p12);
-		square_space.add_square(p21);
-		square_space.add_square(p22);
-		square_space.add_square(p31);
-		square_space.add_square(p32);
+		sp.add_square(c1);
+		sp.add_square(c2);
+		sp.add_square(c3);
+		sp.add_square(p11);
+		sp.add_square(p12);
+		sp.add_square(p21);
+		sp.add_square(p22);
+		sp.add_square(p31);
+		sp.add_square(p32);
 		
 		// Center triangle link
 		c1.link_to(c2);
@@ -58,7 +61,7 @@ public class SampleGameModel extends Game {
 		p31.link_to(p32);
 		p32.link_to(p11);
 		
-		boolean validated = square_space.validate();
+		boolean validated = sp.validate();
 		
 		assert (validated);
 	}
@@ -72,19 +75,86 @@ public class SampleGameModel extends Game {
 
 	@Override
 	public Player get_current_player() {
-		// TODO Auto-generated method stub
-		return null;
+		return current_player;
 	}
 
 	@Override
 	protected void next_player() {
-		
-		// TODO Auto-generated method stub
-		
+		if (player_turn.hasNext())
+		{
+			current_player = player_turn.next ();
+			if (!current_player.is_alive())
+				next_player();
+			assert (current_player != null);
+		}
+		else
+			select_first_player();
 	}
 
 	@Override
 	protected void select_first_player() {
 		player_turn = players.iterator();
+		current_player = player_turn.next();
+		if (!current_player.is_alive())
+			next_player();
+		assert (current_player != null);
+	}
+
+	@Override
+	protected void process_bursts() {
+		square_space.do_all_bursts();
+	}
+
+	@Override
+	public void on_loose_a_piece(Player me, ReadOnlyPiece thisPiece) {
+		if (!me.is_alive())
+		{
+			System.out.println (me.toString() + " died");
+	
+			if (count_alive_players () == 1)
+			{
+				square_space.stop_doing_all_bursts();
+				win (get_an_alive_player());
+			}
+		}
+	}
+
+	private int count_alive_players() {
+		int result = 0;
+		
+		for (Player current_player : players) 
+		{
+			if (current_player.is_alive())
+				result++;
+		}
+		
+		return result;
+	}
+	
+	private Player get_an_alive_player ()
+	{
+		Iterator<Player> i = players.iterator();
+		Player result = null;
+		
+		while (i.hasNext() && (result == null))
+		{
+			Player current = i.next();
+			if (current.is_alive())
+				result = current;
+		}
+		
+		assert (result != null);
+		
+		return result;
+	}
+
+	@Override
+	public void on_new_piece(Player me, ReadOnlyPiece thisPiece) {
+		
+	}
+
+	@Override
+	public void on_win_a_piece(Player me, ReadOnlyPiece thisPiece) {
+		
 	}
 }
