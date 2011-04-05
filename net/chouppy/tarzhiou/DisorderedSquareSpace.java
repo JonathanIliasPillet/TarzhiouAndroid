@@ -2,7 +2,7 @@ package net.chouppy.tarzhiou;
 
 import java.util.Iterator;
 
-public class DisorderedSquareSpace extends SquareSpace {
+public class DisorderedSquareSpace extends RunnableSquareSpace {
 
 	private boolean continue_bursts;
 
