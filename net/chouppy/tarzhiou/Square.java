@@ -66,7 +66,7 @@ public abstract class Square {
 		// The square pieces must all be owned
 		// by the same player
 		if (!pieces.isEmpty())
-			assert (pieces.iterator().next().get_owner() == this_piece.get_owner());
+			assert (pieces.iterator().next().get_owner().equals(this_piece.get_owner()));
 
 		// finally adds the piece to the square
 		pieces.add(this_piece);

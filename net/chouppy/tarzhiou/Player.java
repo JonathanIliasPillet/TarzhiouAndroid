@@ -1,22 +1,14 @@
 package net.chouppy.tarzhiou;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import net.chouppy.tarzhiou.listeners.PlayerListener;
 
-public class Player {
-	protected String displayed_name;
-	List<Piece> my_pieces;
-	private PlayerListener my_listener;
-	
+public class Player extends ReadOnlyPlayer {
+
 	public Player (String this_name)
 	{
-		displayed_name = this_name;
-		my_pieces = new LinkedList<Piece>();
-		my_listener = null;
+		super (this_name);
 	}
-	
+		
 	public Piece new_piece ()
 	{
 		Piece result = new Piece (this);
@@ -32,6 +24,9 @@ public class Player {
 	{
 		my_pieces.remove(this_piece);
 		
+		if (my_pieces.isEmpty())
+			alive = false;
+		
 		if (my_listener != null)
 			my_listener.on_loose_a_piece(this, this_piece);
 	}
@@ -44,21 +39,15 @@ public class Player {
 			my_listener.on_win_a_piece(this, this_piece);
 	}
 	
-	public String get_name ()
+	/**
+	 * This player retracts from game. Its pieces remains
+	 * on square space, but the player won't player anymore.
+	 */
+	public void retract ()
 	{
-		return displayed_name;
+		alive = false;
 	}
-	
-	public String toString ()
-	{
-		return get_name();
-	}
-	
-	public boolean equals (Object o)
-	{	
-		return o == this;
-	}
-	
+
 	public void set_listener (PlayerListener this_listener)
 	{
 		my_listener = this_listener;
