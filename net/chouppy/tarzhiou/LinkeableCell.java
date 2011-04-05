@@ -2,7 +2,7 @@ package net.chouppy.tarzhiou;
 
 import net.chouppy.tarzhiou.listeners.LinkeableCellListener;
 
-public class LinkeableCell extends Cell {
+public class LinkeableCell extends PlayableCell {
 	private LinkeableCellListener my_listener;
 	
 	public LinkeableCell (CellKey this_key) {

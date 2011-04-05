@@ -61,8 +61,8 @@ public class Example {
 	public void start ()
 	{
 		int turn = 0;
-		Cell a = my_cell_space.get_cell_from_key(new NameCellKey ("a"));
-		Cell b = my_cell_space.get_cell_from_key(new NameCellKey ("b"));
+		PlayableCell a = (PlayableCell)my_cell_space.get_cell_from_key(new NameCellKey ("a"));
+		PlayableCell b = (PlayableCell)my_cell_space.get_cell_from_key(new NameCellKey ("b"));
 		
 		a.add_piece(players[0].new_piece());
 		while (my_cell_space.do_one_burst_increment());

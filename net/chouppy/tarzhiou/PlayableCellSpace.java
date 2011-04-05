@@ -1,6 +1,6 @@
 package net.chouppy.tarzhiou;
 
-public abstract class RunnableCellSpace extends ReadOnlyCellSpace {
+public abstract class PlayableCellSpace extends ReadOnlyCellSpace {
 	/**
 	 * Do bursts on many cells. The cells
 	 * are scanned in a specific order (see in subclass).

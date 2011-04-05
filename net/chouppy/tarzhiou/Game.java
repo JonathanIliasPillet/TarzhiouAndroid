@@ -6,7 +6,7 @@ import java.util.Set;
 import net.chouppy.tarzhiou.listeners.GameListener;
 
 public abstract class Game {
-	protected RunnableCellSpace cell_space = null;
+	protected PlayableCellSpace cell_space = null;
 	protected Set<Player> players;
 	protected Set<Piece> pieces;
 	private boolean started;
@@ -34,7 +34,8 @@ public abstract class Game {
 				this_player.equals(this_cell.get_pieces_owner())) 
 		{
 			// adds the new piece 
-			this_cell.add_piece(this_player.new_piece());
+			assert (this_cell instanceof PlayableCell);
+			((PlayableCell)this_cell).add_piece(this_player.new_piece());
 			
 			// do bursts
 			process_bursts ();

@@ -6,14 +6,10 @@ import java.util.Set;
 
 public abstract class ReadOnlyCellSpace {
 	
-	protected Set<Cell> cells;
+	protected Set<PlayableCell> cells;
 	
 	public ReadOnlyCellSpace () {
-		cells = new LinkedHashSet<Cell> ();
-	}
-	
-	public Iterator<Cell> get_iterator () {
-		return cells.iterator();
+		cells = new LinkedHashSet<PlayableCell> ();
 	}
 	
 	/**
@@ -23,7 +19,7 @@ public abstract class ReadOnlyCellSpace {
 	 * @return the required cell or null if none found
 	 */
 	public Cell get_cell_from_key (CellKey this_key) {
-		Iterator<Cell> i = cells.iterator();
+		Iterator<PlayableCell> i = cells.iterator();
 		Cell result = null;
 		
 		while ((i.hasNext()) && (result == null))
@@ -79,7 +75,7 @@ public abstract class ReadOnlyCellSpace {
 		return result.toString();
 	}
 	
-	protected void add_cell (Cell this_cell) {
+	protected void add_cell (PlayableCell this_cell) {
 		cells.add(this_cell);
 	}
 	
@@ -92,7 +88,7 @@ public abstract class ReadOnlyCellSpace {
 	
 	protected boolean validate () {
 		boolean is_valid = true;
-		Iterator<Cell> i = cells.iterator();
+		Iterator<PlayableCell> i = cells.iterator();
 		Cell current_cell;
 	
 		while (i.hasNext() && is_valid) {

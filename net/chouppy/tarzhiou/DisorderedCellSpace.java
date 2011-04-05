@@ -7,7 +7,7 @@ import java.util.Iterator;
  * 
  * @author Jonathan ILIAS-PILLET
  */
-public abstract class DisorderedCellSpace extends RunnableCellSpace {
+public abstract class DisorderedCellSpace extends PlayableCellSpace {
 
 	private boolean continue_bursts;
 
@@ -15,7 +15,7 @@ public abstract class DisorderedCellSpace extends RunnableCellSpace {
 	public boolean do_one_burst_increment() {
 		boolean result = false;
 
-		for (Cell current_cell : cells) {
+		for (PlayableCell current_cell : cells) {
 			if (current_cell.is_overloaded()) {
 				current_cell.burst();
 				result = true;
@@ -27,13 +27,13 @@ public abstract class DisorderedCellSpace extends RunnableCellSpace {
 
 	@Override
 	public void do_all_bursts() {
-		Cell current_cell;
+		PlayableCell current_cell;
 		// tells if there is at least one burst in a turn
 		boolean at_least_one_burst = false;
 
 		continue_bursts = true;
 		do {
-			Iterator<Cell> i = cells.iterator();
+			Iterator<PlayableCell> i = cells.iterator();
 			at_least_one_burst = false;
 			while (i.hasNext() && continue_bursts) {
 				current_cell = i.next();
