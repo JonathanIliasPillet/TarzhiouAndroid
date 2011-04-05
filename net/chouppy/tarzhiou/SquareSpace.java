@@ -20,7 +20,10 @@ public abstract class SquareSpace {
 	 * @return false if not burst occurred, else true (in
 	 * which case another cycle should be done).
 	 */
-	public abstract boolean do_one_burst_increment (); 
+	public abstract boolean do_one_burst_increment ();
+
+	public abstract void do_all_bursts ();
+	public abstract void stop_doing_all_bursts ();
 	
 	public SquareSpace () {
 		squares = new LinkedHashSet<Square> ();
