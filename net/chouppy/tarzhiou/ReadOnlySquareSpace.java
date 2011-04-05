@@ -53,6 +53,11 @@ public abstract class ReadOnlySquareSpace {
 				result.append(current_square.hashCode());
 			result.append(" [label = \"");
 			result.append(current_square.get_pieces_count());
+			if (current_square.get_pieces_count() > 0)
+			{
+				result.append(" - ");
+				result.append(current_square.get_pieces_owner().get_name());
+			}
 			result.append("\"];\n");
 			for (Square neighbor : current_square.get_neighbors())
 			{
