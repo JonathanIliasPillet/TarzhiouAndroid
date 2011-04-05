@@ -26,4 +26,18 @@ public class NameSquareKey extends SquareKey {
 	public int hashCode() {
 		return my_name.hashCode();
 	}
+	
+	@Override
+	public boolean equals (Object o) {
+		if (o == null)
+			return false;
+		else
+		if (!(o instanceof NameSquareKey))
+			return false;
+		else
+		if (o.hashCode() == hashCode())
+			return true;
+		else
+			return false;
+	}
 }
