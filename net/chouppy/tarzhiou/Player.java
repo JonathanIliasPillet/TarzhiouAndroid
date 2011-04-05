@@ -54,6 +54,11 @@ public class Player {
 		return get_name();
 	}
 	
+	public boolean equals (Object o)
+	{	
+		return o == this;
+	}
+	
 	public void set_listener (PlayerListener this_listener)
 	{
 		my_listener = this_listener;
