@@ -85,7 +85,7 @@ public abstract class ReadOnlySquareSpace {
 		a.link_to(b);
 	}
 	
-	protected void validate () {
+	protected boolean validate () {
 		boolean is_valid = true;
 		Iterator<Square> i = squares.iterator();
 		Square current_square;
@@ -95,5 +95,7 @@ public abstract class ReadOnlySquareSpace {
 			if (current_square.get_capacity() < 2)
 				is_valid = false;
 		}
+		
+		return is_valid;
 	}
 }

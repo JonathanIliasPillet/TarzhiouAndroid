@@ -2,7 +2,12 @@ package net.chouppy.tarzhiou;
 
 import java.util.Iterator;
 
-public class DisorderedSquareSpace extends RunnableSquareSpace {
+/**
+ * A squarespace which has a deterministic but undefined burst scan order 
+ * 
+ * @author Jonathan ILIAS-PILLET
+ */
+public abstract class DisorderedSquareSpace extends RunnableSquareSpace {
 
 	private boolean continue_bursts;
 
