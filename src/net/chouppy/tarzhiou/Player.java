@@ -31,8 +31,18 @@ public class Player extends ReadOnlyPlayer {
 			my_listener.on_loose_a_piece(this, this_piece);
 	}
 	
+	/**
+	 * Adds a piece to the player list.
+	 * 
+	 * @warning this piece's owner must be set to
+	 * this player
+	 * 
+	 * @param this_piece the piece the player wins
+	 */
 	public void win_a_piece (Piece this_piece)
 	{
+		assert (this_piece.get_owner().equals(this_piece));
+		
 		my_pieces.add (this_piece);
 		
 		if (my_listener != null)

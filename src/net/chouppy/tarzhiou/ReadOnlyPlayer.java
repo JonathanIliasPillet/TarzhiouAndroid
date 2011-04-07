@@ -29,6 +29,11 @@ public abstract class ReadOnlyPlayer {
 		return displayed_name;
 	}
 	
+	public int get_pieces_count ()
+	{
+		return my_pieces.size();
+	}
+	
 	public String toString ()
 	{
 		return get_name();
