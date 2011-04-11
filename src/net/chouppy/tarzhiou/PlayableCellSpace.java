@@ -1,7 +1,5 @@
 package net.chouppy.tarzhiou;
 
-import java.util.Iterator;
-
 public abstract class PlayableCellSpace extends ReadOnlyCellSpace {
 	/**
 	 * Do bursts on many cells. The cells
@@ -21,16 +19,6 @@ public abstract class PlayableCellSpace extends ReadOnlyCellSpace {
 	public abstract void stop_doing_all_bursts ();
 
 	public PlayableCell get_playable_cell_from_key (CellKey this_key) {
-		Iterator<PlayableCell> i = cells.iterator();
-		PlayableCell result = null;
-
-		while ((i.hasNext()) && (result == null))
-		{
-			PlayableCell temp = i.next();
-			if (temp.hashCode() == this_key.hashCode())
-				result = temp;
-		}
-
-		return result;
+		return (PlayableCell)get_cell_from_key (this_key);
 	}
 }
