@@ -9,8 +9,8 @@ public class SampleCellSpace extends DisorderedCellSpace {
 	public SampleCellSpace ()
 	{
 		LinkeableCell c1 = new LinkeableCell(new NameCellKey("c1"));
-		LinkeableCell c2 = new LinkeableCell(new NameCellKey("c1"));
-		LinkeableCell c3 = new LinkeableCell(new NameCellKey("c1"));
+		LinkeableCell c2 = new LinkeableCell(new NameCellKey("c2"));
+		LinkeableCell c3 = new LinkeableCell(new NameCellKey("c3"));
 		LinkeableCell p11 = new LinkeableCell(new NameCellKey("p11"));
 		LinkeableCell p12 = new LinkeableCell(new NameCellKey("p12"));
 		LinkeableCell p21 = new LinkeableCell(new NameCellKey("p21"));
