@@ -8,30 +8,17 @@ import java.net.URL;
 
 import javax.swing.JFrame;
 
-import org.apache.batik.bridge.BridgeContext;
-import org.apache.batik.bridge.DocumentLoader;
-import org.apache.batik.bridge.GVTBuilder;
-import org.apache.batik.bridge.UserAgent;
-import org.apache.batik.bridge.UserAgentAdapter;
-import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
-import org.apache.batik.dom.svg.SVGStylableElement;
-import org.apache.batik.gvt.GraphicsNode;
-import org.apache.batik.swing.JSVGCanvas;
-import org.apache.batik.util.XMLResourceDescriptor;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import net.chouppy.tarzhiou.Game;
 import net.chouppy.tarzhiou.NameCellKey;
 import net.chouppy.tarzhiou.Player;
 import net.chouppy.tarzhiou.listeners.GameListener;
 import net.chouppy.tarzhiou.sample_game.model.SampleGameModel;
+import net.chouppy.tarzhiou.sample_game.view.SampleCellSpaceViewer;
 
-public class SampleGame implements MouseListener, GameListener {
+public class SampleGame {
 	private SampleGameModel game_model;
 	private JFrame main_window;
-	private JSVGCanvas svg_canvas;
-	private Document svg_doc;
+	private SampleCellSpaceViewer cell_space_viewer;
 
 	private SampleGame ()
 		throws Exception
@@ -45,8 +32,9 @@ public class SampleGame implements MouseListener, GameListener {
 
 		main_window = new JFrame ("Tarzhiou sample game");
 		main_window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		main_window.setSize(250, 250);
+		
+		cell_space_viewer = new SampleCellSpaceViewer();
+		main_window.add(cell_space_viewer);
 
 		main_window.pack ();
 		main_window.setVisible(true);
@@ -58,19 +46,6 @@ public class SampleGame implements MouseListener, GameListener {
 		throws Exception
 	{
 		
-		//Element svg;
-		svg_canvas = new JSVGCanvas();
-		main_window.getContentPane().add (svg_canvas);
-		
-		String parser = XMLResourceDescriptor.getXMLParserClassName();
-        SAXSVGDocumentFactory f = new SAXSVGDocumentFactory(parser);
-        URL url = new URL("file:///tmp/bg.svg");
-        svg_doc = f.createDocument(url.toString());
-
-        svg_canvas.setDocumentState(JSVGCanvas.ALWAYS_DYNAMIC);
-        svg_canvas.setDocument(svg_doc);
-
-		svg_canvas.addMouseListener(this);
 	}
 	
 	public static void main(String[] args) 
@@ -78,73 +53,4 @@ public class SampleGame implements MouseListener, GameListener {
 	{
 		new SampleGame();
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		Point p = arg0.getPoint();
-		
-		UserAgent userAgent = new UserAgentAdapter();
-		DocumentLoader loader = new DocumentLoader(userAgent);
-		BridgeContext context = new BridgeContext(
-		                                   userAgent, loader);
-		context.setDynamicState(BridgeContext.DYNAMIC);
-		GVTBuilder builder = new GVTBuilder();
-		GraphicsNode rootGraphicsNode = builder.build(
-		                                   context, svg_canvas.getSVGDocument());
-
-		GraphicsNode graphicsNode =
-		rootGraphicsNode.nodeHitAt(new Point2D.Float(p.x, p.y));
-
-		if (graphicsNode != null)
-		{
-			Element e = context.getElement(graphicsNode);
-			String name = e.getAttribute("id");
-			game_model.play(new NameCellKey (name), game_model.get_current_player());
-			System.out.println (game_model.get_cell_space_view().toString());
-			
-			/*
-			 * TODO : find a way to change a cell
-			 */
-			/*SVGStylableElement e = (SVGStylableElement)context.getElement(graphicsNode);
-			e.getStyle().setProperty("fill", "red", "");
-			*/
-			
-			/*Element e = context.getElement(graphicsNode);
-			e.setAttribute("style", "fill:#ffffff");
-			String attr = e.getAttribute("style");
-			System.out.println (attr);*/
-		}
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void on_win(Game thisGame, Player winner) {
-		System.out.println (winner.get_name()+ " wins !");
-		
-	}
-
 }
