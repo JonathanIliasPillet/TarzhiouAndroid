@@ -2,10 +2,7 @@ package net.chouppy.tarzhiou.sample_game.model;
 
 import java.util.Iterator;
 
-import net.chouppy.tarzhiou.BuildableCellSpace;
 import net.chouppy.tarzhiou.Game;
-import net.chouppy.tarzhiou.LinkeableCell;
-import net.chouppy.tarzhiou.NameCellKey;
 import net.chouppy.tarzhiou.Player;
 import net.chouppy.tarzhiou.ReadOnlyPiece;
 import net.chouppy.tarzhiou.listeners.PlayerListener;
