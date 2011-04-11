@@ -8,7 +8,6 @@ import net.chouppy.tarzhiou.LinkeableCell;
 import net.chouppy.tarzhiou.NameCellKey;
 import net.chouppy.tarzhiou.Player;
 import net.chouppy.tarzhiou.ReadOnlyPiece;
-import net.chouppy.tarzhiou.listeners.GameListener;
 import net.chouppy.tarzhiou.listeners.PlayerListener;
 
 public class SampleGameModel extends Game implements PlayerListener {
@@ -19,51 +18,7 @@ public class SampleGameModel extends Game implements PlayerListener {
 	{
 		super ();
 		
-		BuildableCellSpace sp = new BuildableCellSpace();
-		cell_space = sp;
-		
-		LinkeableCell c1 = new LinkeableCell(new NameCellKey("center1"));
-		LinkeableCell c2 = new LinkeableCell(new NameCellKey("center2"));
-		LinkeableCell c3 = new LinkeableCell(new NameCellKey("center3"));
-		LinkeableCell p11 = new LinkeableCell(new NameCellKey("peripheral11"));
-		LinkeableCell p12 = new LinkeableCell(new NameCellKey("peripheral12"));
-		LinkeableCell p21 = new LinkeableCell(new NameCellKey("peripheral21"));
-		LinkeableCell p22 = new LinkeableCell(new NameCellKey("peripheral22"));
-		LinkeableCell p31 = new LinkeableCell(new NameCellKey("peripheral31"));
-		LinkeableCell p32 = new LinkeableCell(new NameCellKey("peripheral32"));
-		
-		sp.add_cell(c1);
-		sp.add_cell(c2);
-		sp.add_cell(c3);
-		sp.add_cell(p11);
-		sp.add_cell(p12);
-		sp.add_cell(p21);
-		sp.add_cell(p22);
-		sp.add_cell(p31);
-		sp.add_cell(p32);
-		
-		// Center triangle link
-		c1.link_to(c2);
-		c2.link_to(c3);
-		c3.link_to(c1);
-		// connect peripherals to centers
-		p11.link_to(c1);
-		p12.link_to(c1);
-		p21.link_to(c2);
-		p22.link_to(c2);
-		p31.link_to(c3);
-		p32.link_to(c3);
-		// connect peripherals each other (hexagon)
-		p11.link_to(p12);
-		p12.link_to(p21);
-		p21.link_to(p22);
-		p22.link_to(p31);
-		p31.link_to(p32);
-		p32.link_to(p11);
-		
-		boolean validated = sp.validate();
-		
-		assert (validated);
+		cell_space = new SampleCellSpace();
 	}
 	
 	public void create_player (String name)
