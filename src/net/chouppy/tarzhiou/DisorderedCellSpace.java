@@ -15,7 +15,7 @@ public abstract class DisorderedCellSpace extends PlayableCellSpace {
 	public boolean doOneBurstIncrement() {
 		boolean result = false;
 
-		for (PlayableCell current_cell : cells) {
+		for (PlayableCell current_cell : getCells()) {
 			if (current_cell.isOverloaded()) {
 				current_cell.burst();
 				result = true;
@@ -33,7 +33,7 @@ public abstract class DisorderedCellSpace extends PlayableCellSpace {
 
 		continueBursts = true;
 		do {
-			Iterator<PlayableCell> i = cells.iterator();
+			Iterator<PlayableCell> i = getCells().iterator();
 			atLeastOneBurst = false;
 			while (i.hasNext() && continueBursts) {
 				currentCell = i.next();

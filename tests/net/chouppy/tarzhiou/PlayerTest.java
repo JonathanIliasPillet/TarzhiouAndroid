@@ -19,7 +19,7 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	private boolean listener_win_trace;
 	private boolean listener_loose_trace;
 	private Player listener_me;
-	private ReadOnlyPiece listener_this_piece;
+	private Piece listener_this_piece;
 	
 	protected void setUp() throws Exception {
 		tested_player = new Player (PlayerTest.PLAYER_NAME);
@@ -27,50 +27,50 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	
 	public void test_name ()
 	{
-		assertSame (PlayerTest.PLAYER_NAME, tested_player.get_name());
+		assertEquals (PlayerTest.PLAYER_NAME, tested_player.getCanonicalName());
 	}
 	
 	public void test_new_piece ()
 	{
-		assertEquals(0, tested_player.get_pieces_count());
+		assertEquals(0, tested_player.getPiecesCount());
 		
 		Piece p = tested_player.newPiece();
 		
 		assertSame (p.getOwner(), tested_player);
-		assertEquals(1, tested_player.get_pieces_count());
+		assertEquals(1, tested_player.getPiecesCount());
 		
 		tested_player.newPiece();
 		tested_player.newPiece();
-		assertEquals(3, tested_player.get_pieces_count());
+		assertEquals(3, tested_player.getPiecesCount());
 	}
 	
 	public void test_alive ()
 	{
-		assertTrue (tested_player.is_alive());
+		assertTrue (tested_player.isAlive());
 		
 		Piece new_piece = tested_player.newPiece();
-		assertTrue (tested_player.is_alive());
+		assertTrue (tested_player.isAlive());
 		
 		Piece piece_won = new Piece (new Player ("other"));
 		tested_player.winAPiece(piece_won);
-		assertTrue(tested_player.is_alive());
+		assertTrue(tested_player.isAlive());
 		
 		tested_player.looseAPiece(new_piece);
-		assertTrue(tested_player.is_alive());
+		assertTrue(tested_player.isAlive());
 		tested_player.looseAPiece(piece_won);
-		assertFalse (tested_player.is_alive());
+		assertFalse (tested_player.isAlive());
 	}
 	
 	public void test_retract ()
 	{
-		assertTrue (tested_player.is_alive());
+		assertTrue (tested_player.isAlive());
 		
 		tested_player.newPiece();
 		
 		tested_player.retract();
 		
-		assertFalse(tested_player.is_alive());
-		assertEquals(1, tested_player.get_pieces_count());
+		assertFalse(tested_player.isAlive());
+		assertEquals(1, tested_player.getPiecesCount());
 	}
 	
 	public void test_equals ()
@@ -119,21 +119,21 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	}
 
 	@Override
-	public void onLooseAPiece(Player me, ReadOnlyPiece thisPiece) {
+	public void onLooseAPiece(Player me, Piece thisPiece) {
 		listener_loose_trace = true;
 		listener_me = me;
 		listener_this_piece = thisPiece;		
 	}
 
 	@Override
-	public void onNewPiece(Player me, ReadOnlyPiece thisPiece) {
+	public void onNewPiece(Player me, Piece thisPiece) {
 		listener_new_trace = true;
 		listener_me = me;
 		listener_this_piece = thisPiece;	
 	}
 
 	@Override
-	public void onWinAPiece(Player me, ReadOnlyPiece thisPiece) {
+	public void onWinAPiece(Player me, Piece thisPiece) {
 		listener_win_trace = true;
 		listener_me = me;
 		listener_this_piece = thisPiece;	

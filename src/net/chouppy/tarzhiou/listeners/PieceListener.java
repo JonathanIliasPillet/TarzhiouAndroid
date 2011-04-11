@@ -1,8 +1,10 @@
 package net.chouppy.tarzhiou.listeners;
 
 import net.chouppy.tarzhiou.Player;
-import net.chouppy.tarzhiou.ReadOnlyPiece;
+import net.chouppy.tarzhiou.Piece;
 
-public interface PieceListener {
-	public void on_owner_changed (ReadOnlyPiece me, Player previous_owner, Player new_owner);
+public interface PieceListener
+{
+  public void onOwnerChanged(Piece me, Player previousOwner,
+        Player newOwner);
 }

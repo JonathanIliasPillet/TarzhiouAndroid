@@ -1,19 +1,68 @@
 package net.chouppy.tarzhiou;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import net.chouppy.tarzhiou.listeners.PlayerListener;
 
-public class Player extends ReadOnlyPlayer
+/**
+ * Represents a player
+ * 
+ * @author Jonathan ILIAS-PILLET
+ */
+public class Player
 {
+  /**
+   * Canonical name of the player
+   */
+  private String myCanonicalName;
 
-  public Player(String thisName)
+  /**
+   * List of all the pieces the player owns
+   */
+  private List<Piece> myPieces;
+
+  /**
+   * List of listeners of this player
+   */
+  private List<PlayerListener> myListeners;
+
+  /**
+   * Tells if the player is still alive in the game.
+   * 
+   * If the player falls to zero pieces or retracts, she dies. After creation, a
+   * player is alive.
+   */
+  private boolean alive;
+
+  /**
+   * Creates a player.
+   * 
+   * @note The given player name should be unique for a game. The hashCode of
+   *       the player is derived from its name
+   * 
+   * @param thisCanonicalName
+   *          the canonical name of the player
+   */
+  public Player(String thisCanonicalName)
   {
-    super(thisName);
+    myCanonicalName = thisCanonicalName;
+    myPieces = new LinkedList<Piece>();
+    myListeners = new LinkedList<PlayerListener>();
+    alive = true;
   }
 
+  /**
+   * Creates a piece for this player.
+   * 
+   * The created piece is to be added to a cell
+   * 
+   * @return the created piece
+   */
   public Piece newPiece()
   {
     Piece result = new Piece(this);
-    my_pieces.add(result);
+    myPieces.add(result);
 
     for (PlayerListener listener : myListeners)
       listener.onNewPiece(this, result);
@@ -21,19 +70,25 @@ public class Player extends ReadOnlyPlayer
     return result;
   }
 
-  public void looseAPiece(Piece this_piece)
+  /**
+   * Called when a player looses a piece
+   * 
+   * @param thisPiece
+   *          the loosed piece
+   */
+  public void looseAPiece(Piece thisPiece)
   {
-    my_pieces.remove(this_piece);
+    myPieces.remove(thisPiece);
 
-    if (my_pieces.isEmpty())
+    if (myPieces.isEmpty())
       alive = false;
 
     for (PlayerListener listener : myListeners)
-      listener.onLooseAPiece(this, this_piece);
+      listener.onLooseAPiece(this, thisPiece);
   }
 
   /**
-   * Adds a piece to the player list.
+   * Adds an existing piece to the player list.
    * 
    * @warning this piece's owner must be set to this player
    * 
@@ -44,7 +99,7 @@ public class Player extends ReadOnlyPlayer
   {
     assert (this_piece.getOwner().equals(this_piece.getOwner()));
 
-    my_pieces.add(this_piece);
+    myPieces.add(this_piece);
 
     for (PlayerListener listener : myListeners)
       listener.onWinAPiece(this, this_piece);
@@ -59,8 +114,64 @@ public class Player extends ReadOnlyPlayer
     alive = false;
   }
 
+  /**
+   * Tells if player is still alive.
+   * 
+   * @return true if the player is alive.
+   */
+  public boolean isAlive()
+  {
+    return alive;
+  }
+
+  /**
+   * Gives the canonical name of the player
+   * 
+   * @return the canonical name of the player
+   */
+  public String getCanonicalName()
+  {
+    return new String(myCanonicalName);
+  }
+
+  /**
+   * Gives the number of pieces the player owns
+   * 
+   * @return number of pieces own by the player
+   */
+  public int getPiecesCount()
+  {
+    return myPieces.size();
+  }
+
+  /**
+   * Adds a listener
+   * 
+   * @see #PlayerListener
+   * 
+   * @param thisListener
+   *          the listener to add
+   */
   public void addListener(PlayerListener thisListener)
   {
-    myListeners.add (thisListener);
+    myListeners.add(thisListener);
+  }
+
+  @Override
+  public String toString()
+  {
+    return getCanonicalName();
+  }
+
+  @Override
+  public boolean equals(Object o)
+  {
+    return o == this;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return myCanonicalName.hashCode();
   }
 }

@@ -3,5 +3,5 @@ package net.chouppy.tarzhiou.listeners;
 import net.chouppy.tarzhiou.LinkeableCell;
 
 public interface LinkeableCellListener {
-	public void on_link (LinkeableCell me, LinkeableCell other);
+	public void onLink (LinkeableCell me, LinkeableCell other);
 }

@@ -188,8 +188,8 @@ public class SampleCellSpaceTests extends TestCase {
 		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).addPiece(p2.newPiece());
 		tested_cell_space.doAllBursts();
 
-		assertEquals(4, p1.get_pieces_count());
-		assertEquals(0, p2.get_pieces_count());
+		assertEquals(4, p1.getPiecesCount());
+		assertEquals(0, p2.getPiecesCount());
 		assertEquals(p1, tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).getPiecesOwner());
 	}
 }

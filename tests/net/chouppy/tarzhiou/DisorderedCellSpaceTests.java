@@ -99,8 +99,8 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
     
     tested_cellspace.doAllBursts();
     
-    assertEquals(0, p2.get_pieces_count());
-    assertEquals(cell_p1.getCapacity()+1, p1.get_pieces_count());
+    assertEquals(0, p2.getPiecesCount());
+    assertEquals(cell_p1.getCapacity()+1, p1.getPiecesCount());
   }
   
   public void test_long_burst_chain ()
@@ -148,7 +148,7 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
     tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.newPiece());
     tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.newPiece());
 
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).setListener(this);
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).addListener(this);
 
     test_stop_all_bursts = true;
     
@@ -162,7 +162,7 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
     listener_trace_add_piece = false;
     listener_trace_burst = false;
     
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).setListener(this);
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addListener(this);
     
     tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
     
@@ -182,13 +182,13 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
   }
 
   @Override
-  public void on_add_piece(Cell me, Piece thisPiece) 
+  public void onAddPiece(Cell me, Piece thisPiece) 
   {
     listener_trace_add_piece = true;
   }
 
   @Override
-  public void on_burst(Cell me)
+  public void onBurst(Cell me)
   {
     if (test_stop_all_bursts && me.getKey().equals(new NameCellKey("c5")))
       tested_cellspace.stopDoingAllBursts();

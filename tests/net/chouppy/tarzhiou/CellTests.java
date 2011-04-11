@@ -126,7 +126,7 @@ public class CellTests extends TestCase implements CellListener, LinkeableCellLi
 		Player p1 = new Player ("p1");
 		Piece added_piece = p1.newPiece();
 		
-		tested_cell.setListener(this);
+		tested_cell.addListener(this);
 		
 		listener_add_trace = false;
 		listener_burst_trace = false;
@@ -163,21 +163,21 @@ public class CellTests extends TestCase implements CellListener, LinkeableCellLi
 	}
 
 	@Override
-	public void on_add_piece(Cell me, Piece thisPiece) {
+	public void onAddPiece(Cell me, Piece thisPiece) {
 		listener_add_trace = true;
 		listener_me = me;
 		listener_piece = thisPiece;		
 	}
 
 	@Override
-	public void on_burst(Cell me) {
+	public void onBurst(Cell me) {
 		listener_me = me;
 		listener_burst_trace = true;
 		
 	}
 
 	@Override
-	public void on_link(LinkeableCell me, LinkeableCell other) {
+	public void onLink(LinkeableCell me, LinkeableCell other) {
 		listener_link_trace = true;
 		listener_me = me;
 		listener_other = other;

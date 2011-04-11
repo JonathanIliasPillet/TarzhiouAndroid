@@ -1,13 +1,15 @@
 package net.chouppy.tarzhiou;
 
+import java.util.LinkedList;
+
 import net.chouppy.tarzhiou.listeners.LinkeableCellListener;
 
 public class LinkeableCell extends PlayableCell {
-	private LinkeableCellListener myListener;
+	private LinkedList<LinkeableCellListener> myListeners;
 	
-	public LinkeableCell (CellKey this_key) {
-		super (this_key);
-		myListener = null;
+	public LinkeableCell (CellKey thisKey) {
+		super (thisKey);
+		myListeners = new LinkedList<LinkeableCellListener>();
 	}
 	
 	public void linkTo (LinkeableCell newNeighbor) {
@@ -16,11 +18,11 @@ public class LinkeableCell extends PlayableCell {
 		newNeighbor.addNeighbor(this);
 		
 		// calls listener if any
-		if (myListener != null)
-			myListener.on_link(this, newNeighbor);
+		for (LinkeableCellListener listener : myListeners)
+		  listener.onLink(this, newNeighbor);
 	}
 	
 	public void setLinkeableListener (LinkeableCellListener thisListener) {
-		myListener = thisListener;
+		myListeners.add (thisListener);
 	}
 }

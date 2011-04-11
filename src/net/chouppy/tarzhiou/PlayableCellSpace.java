@@ -15,9 +15,26 @@ public abstract class PlayableCellSpace extends ReadOnlyCellSpace {
 	 */
 	public abstract boolean doOneBurstIncrement ();
 
+	/**
+	 * Do bursts as long as needed or until external stop is requested (see {@link #stopDoingAllBursts()}).
+	 */
 	public abstract void doAllBursts ();
+	
+	/**
+	 * Stops a burst chain while doing {@link #doAllBursts()}
+	 * 
+	 * This should not be called by a concurrent thread. This should be called back
+	 * from a listener while doing {@link #doAllBursts()}.
+	 */
 	public abstract void stopDoingAllBursts ();
 
+	/**
+	 * Returns the specified playable cell
+	 * 
+	 * @param this_key the key of the playable cell
+	 * 
+	 * @return the requested cell, or null if none found
+	 */
 	public PlayableCell get_playable_cell_from_key (CellKey this_key) {
 		return (PlayableCell)get_cell_from_key (this_key);
 	}

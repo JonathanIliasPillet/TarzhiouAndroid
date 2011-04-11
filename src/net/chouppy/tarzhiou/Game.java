@@ -100,7 +100,7 @@ public abstract class Game
     if (playerTurn.hasNext())
     {
       currentPlayer = playerTurn.next();
-      if (!currentPlayer.is_alive())
+      if (!currentPlayer.isAlive())
         next_player();
       assert (currentPlayer != null);
     }
@@ -112,7 +112,7 @@ public abstract class Game
   {
     playerTurn = getPlayers().iterator();
     currentPlayer = playerTurn.next();
-    if (!currentPlayer.is_alive())
+    if (!currentPlayer.isAlive())
       next_player();
     assert (currentPlayer != null);
   }
@@ -123,7 +123,7 @@ public abstract class Game
 
     for (Player current_player : myPlayers)
     {
-      if (current_player.is_alive())
+      if (current_player.isAlive())
         result++;
     }
 
@@ -138,7 +138,7 @@ public abstract class Game
     while (i.hasNext() && (result == null))
     {
       Player current = i.next();
-      if (current.is_alive())
+      if (current.isAlive())
         result = current;
     }
 
