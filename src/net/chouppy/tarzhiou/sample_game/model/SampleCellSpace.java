@@ -18,15 +18,15 @@ public class SampleCellSpace extends DisorderedCellSpace {
 		LinkeableCell p31 = new LinkeableCell(new NameCellKey("p31"));
 		LinkeableCell p32 = new LinkeableCell(new NameCellKey("p32"));
 		
-		add_cell(c1);
-		add_cell(c2);
-		add_cell(c3);
-		add_cell(p11);
-		add_cell(p12);
-		add_cell(p21);
-		add_cell(p22);
-		add_cell(p31);
-		add_cell(p32);
+		addCell(c1);
+		addCell(c2);
+		addCell(c3);
+		addCell(p11);
+		addCell(p12);
+		addCell(p21);
+		addCell(p22);
+		addCell(p31);
+		addCell(p32);
 		
 		// Center triangle link
 		c1.linkTo(c2);

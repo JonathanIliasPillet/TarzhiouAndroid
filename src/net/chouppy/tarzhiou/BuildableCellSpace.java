@@ -53,7 +53,7 @@ public class BuildableCellSpace extends DisorderedCellSpace implements
   {
     thisCell.setLinkeableListener(this);
     validated = false;
-    super.add_cell(thisCell);
+    super.addCell(thisCell);
   }
 
   /**

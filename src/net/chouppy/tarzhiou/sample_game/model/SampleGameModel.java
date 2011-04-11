@@ -38,7 +38,7 @@ public class SampleGameModel extends Game implements PlayerListener
       if (countAlivePlayers() == 1)
       {
         getCellSpace().stopDoingAllBursts();
-        win(get_an_alive_player());
+        win(getAnAlivePlayer());
       }
     }
   }

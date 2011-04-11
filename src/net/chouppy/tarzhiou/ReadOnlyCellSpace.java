@@ -30,7 +30,7 @@ public abstract class ReadOnlyCellSpace
    *          the key that represents the cell
    * @return the required cell or null if none found
    */
-  public Cell get_cell_from_key(CellKey this_key)
+  public Cell getCellFromKey(CellKey this_key)
   {
     Iterator<PlayableCell> i = cells.iterator();
     Cell result = null;
@@ -89,7 +89,7 @@ public abstract class ReadOnlyCellSpace
     return result.toString();
   }
 
-  protected void add_cell(PlayableCell thisCell)
+  protected void addCell(PlayableCell thisCell)
   {
     assert (!cells.contains(thisCell));
 

@@ -12,8 +12,6 @@ public abstract class Game
 
   private Set<Player> myPlayers;
 
-  protected Set<Piece> pieces;
-
   private boolean started;
 
   private GameListener myListener;
@@ -25,7 +23,6 @@ public abstract class Game
   protected Game()
   {
     myPlayers = new LinkedHashSet<Player>();
-    pieces = new LinkedHashSet<Piece>();
     started = false;
     myListener = null;
   }
@@ -54,7 +51,7 @@ public abstract class Game
       processBursts();
 
       // jump to next player
-      next_player();
+      nextPlayer();
 
       result = true;
     }
@@ -68,7 +65,7 @@ public abstract class Game
   {
     assert (myCellSpace != null);
     assert (started);
-    Cell this_cell = myCellSpace.get_cell_from_key(this_cell_key);
+    Cell this_cell = myCellSpace.getCellFromKey(this_cell_key);
 
     if (this_cell != null)
       return play(this_cell, this_player);
@@ -79,11 +76,11 @@ public abstract class Game
   public void start()
   {
     assert (myPlayers.size() > 1);
-    select_first_player();
+    selectFirstPlayer();
     started = true;
   }
 
-  public void set_listener(GameListener this_listener)
+  public void setListener(GameListener this_listener)
   {
     myListener = this_listener;
   }
@@ -95,25 +92,25 @@ public abstract class Game
     return currentPlayer;
   }
 
-  protected void next_player()
+  protected void nextPlayer()
   {
     if (playerTurn.hasNext())
     {
       currentPlayer = playerTurn.next();
       if (!currentPlayer.isAlive())
-        next_player();
+        nextPlayer();
       assert (currentPlayer != null);
     }
     else
-      select_first_player();
+      selectFirstPlayer();
   }
 
-  protected void select_first_player()
+  protected void selectFirstPlayer()
   {
     playerTurn = getPlayers().iterator();
     currentPlayer = playerTurn.next();
     if (!currentPlayer.isAlive())
-      next_player();
+      nextPlayer();
     assert (currentPlayer != null);
   }
 
@@ -130,7 +127,7 @@ public abstract class Game
     return result;
   }
 
-  protected Player get_an_alive_player()
+  protected Player getAnAlivePlayer()
   {
     Iterator<Player> i = myPlayers.iterator();
     Player result = null;

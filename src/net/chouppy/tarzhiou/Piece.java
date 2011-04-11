@@ -16,7 +16,7 @@ public class Piece
     myListeners = new LinkedList<PieceListener>();
   }
 
-  public void change_owner(Player this_player)
+  public void changeOwner(Player this_player)
   {
     Player old_owner = owner;
     old_owner.looseAPiece(this);

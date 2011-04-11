@@ -35,7 +35,7 @@ public abstract class PlayableCellSpace extends ReadOnlyCellSpace {
 	 * 
 	 * @return the requested cell, or null if none found
 	 */
-	public PlayableCell get_playable_cell_from_key (CellKey this_key) {
-		return (PlayableCell)get_cell_from_key (this_key);
+	public PlayableCell getPlayableCellFromKey (CellKey this_key) {
+		return (PlayableCell)getCellFromKey (this_key);
 	}
 }

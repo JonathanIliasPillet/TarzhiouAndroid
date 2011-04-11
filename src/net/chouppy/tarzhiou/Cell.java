@@ -108,7 +108,7 @@ public abstract class Cell
     // change all pieces owner
     for (Piece current_piece : myPieces)
     {
-      current_piece.change_owner((Player) this_piece.getOwner());
+      current_piece.changeOwner((Player) this_piece.getOwner());
     }
     // finally adds the piece to the cell
     myPieces.add(this_piece);

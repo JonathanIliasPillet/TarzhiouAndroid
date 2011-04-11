@@ -29,10 +29,10 @@ public class SampleGame {
 		main_window.pack ();
 		main_window.setVisible(true);
 		
-		load_background ();
+		loadBackground ();
 	}
 	
-	private void load_background ()
+	private void loadBackground ()
 		throws Exception
 	{
 		
