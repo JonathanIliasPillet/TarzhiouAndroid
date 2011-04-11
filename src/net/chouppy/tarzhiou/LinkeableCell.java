@@ -3,24 +3,24 @@ package net.chouppy.tarzhiou;
 import net.chouppy.tarzhiou.listeners.LinkeableCellListener;
 
 public class LinkeableCell extends PlayableCell {
-	private LinkeableCellListener my_listener;
+	private LinkeableCellListener myListener;
 	
 	public LinkeableCell (CellKey this_key) {
 		super (this_key);
-		my_listener = null;
+		myListener = null;
 	}
 	
-	public void link_to (LinkeableCell new_neighbor) {
+	public void linkTo (LinkeableCell newNeighbor) {
 		// link is bidirectional
-		neighbors.add(new_neighbor);
-		new_neighbor.neighbors.add (this);
+		addNeighbor(newNeighbor);
+		newNeighbor.addNeighbor(this);
 		
 		// calls listener if any
-		if (my_listener != null)
-			my_listener.on_link(this, new_neighbor);
+		if (myListener != null)
+			myListener.on_link(this, newNeighbor);
 	}
 	
-	public void set_linkeable_listener (LinkeableCellListener this_listener) {
-		my_listener = this_listener;
+	public void setLinkeableListener (LinkeableCellListener thisListener) {
+		myListener = thisListener;
 	}
 }

@@ -43,28 +43,28 @@ public abstract class ReadOnlyCellSpace {
 		for (Cell current_cell : cells) 
 		{
 			result.append("cell_");
-			if (current_cell.get_key() instanceof NameCellKey)
-				result.append (((NameCellKey)current_cell.get_key()).toString());
+			if (current_cell.getKey() instanceof NameCellKey)
+				result.append (((NameCellKey)current_cell.getKey()).toString());
 			else
 				result.append(current_cell.hashCode());
 			result.append(" [label = \"");
-			result.append(current_cell.get_pieces_count());
-			if (current_cell.get_pieces_count() > 0)
+			result.append(current_cell.getPiecesCount());
+			if (current_cell.getPiecesCount() > 0)
 			{
 				result.append(" - ");
-				result.append(current_cell.get_pieces_owner().get_name());
+				result.append(current_cell.getPiecesOwner().get_name());
 			}
 			result.append("\"];\n");
-			for (Cell neighbor : current_cell.get_neighbors())
+			for (Cell neighbor : current_cell.getNeighbors())
 			{
 				result.append("cell_");
-				if (current_cell.get_key() instanceof NameCellKey)
-					result.append (((NameCellKey)current_cell.get_key()).toString());
+				if (current_cell.getKey() instanceof NameCellKey)
+					result.append (((NameCellKey)current_cell.getKey()).toString());
 				else
 					result.append(current_cell.hashCode());
 				result.append(" -- cell_");
-				if (current_cell.get_key() instanceof NameCellKey)
-					result.append (((NameCellKey)neighbor.get_key()).toString());
+				if (current_cell.getKey() instanceof NameCellKey)
+					result.append (((NameCellKey)neighbor.getKey()).toString());
 				else
 					result.append(neighbor.hashCode());
 				result.append(";\n");
@@ -79,11 +79,11 @@ public abstract class ReadOnlyCellSpace {
 		cells.add(this_cell);
 	}
 	
-	protected void link_cells (LinkeableCell a, LinkeableCell b) {
+	protected void linkCells (LinkeableCell a, LinkeableCell b) {
 		assert (cells.contains(a));
 		assert (cells.contains(b));
 		
-		a.link_to(b);
+		a.linkTo(b);
 	}
 	
 	protected boolean validate () {
@@ -93,7 +93,7 @@ public abstract class ReadOnlyCellSpace {
 	
 		while (i.hasNext() && is_valid) {
 			current_cell = i.next ();
-			if (current_cell.get_capacity() < 2)
+			if (current_cell.getCapacity() < 2)
 				is_valid = false;
 		}
 		

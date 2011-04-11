@@ -54,7 +54,7 @@ public class SampleGameModel extends Game implements PlayerListener {
 
 	@Override
 	protected void process_bursts() {
-		cell_space.do_all_bursts();
+		cell_space.doAllBursts();
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class SampleGameModel extends Game implements PlayerListener {
 	
 			if (count_alive_players () == 1)
 			{
-				cell_space.stop_doing_all_bursts();
+				cell_space.stopDoingAllBursts();
 				win (get_an_alive_player());
 			}
 		}

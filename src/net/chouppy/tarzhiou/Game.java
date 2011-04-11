@@ -30,12 +30,12 @@ public abstract class Game {
 		
 		boolean result;
 		
-		if ((this_cell.get_pieces_count() == 0) ||
-				this_player.equals(this_cell.get_pieces_owner())) 
+		if ((this_cell.getPiecesCount() == 0) ||
+				this_player.equals(this_cell.getPiecesOwner())) 
 		{
 			// adds the new piece 
 			assert (this_cell instanceof PlayableCell);
-			((PlayableCell)this_cell).add_piece(this_player.new_piece());
+			((PlayableCell)this_cell).addPiece(this_player.new_piece());
 			
 			// do bursts
 			process_bursts ();

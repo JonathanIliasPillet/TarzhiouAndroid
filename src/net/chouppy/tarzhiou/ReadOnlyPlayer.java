@@ -43,4 +43,10 @@ public abstract class ReadOnlyPlayer {
 	{	
 		return o == this;
 	}
+	
+	@Override
+	public int hashCode ()
+	{
+	  return super.hashCode();
+	}
 }

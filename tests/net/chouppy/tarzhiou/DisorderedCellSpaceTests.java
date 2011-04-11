@@ -28,19 +28,19 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
     LinkeableCell c4 = new LinkeableCell(new NameCellKey("c4"));
     LinkeableCell c5 = new LinkeableCell(new NameCellKey("c5"));
     
-    bcs.add_cell(c1);
-    bcs.add_cell(c2);
-    bcs.add_cell(c3);
-    bcs.add_cell(c4);
-    bcs.add_cell(c5);
+    bcs.addCell(c1);
+    bcs.addCell(c2);
+    bcs.addCell(c3);
+    bcs.addCell(c4);
+    bcs.addCell(c5);
     
-    bcs.link_cells(c1, c2);
-    bcs.link_cells(c2, c3);
-    bcs.link_cells(c3, c4);
-    bcs.link_cells(c4, c1);
-    bcs.link_cells(c5, c1);
-    bcs.link_cells(c5, c2);
-    bcs.link_cells(c5, c3);
+    bcs.linkCells(c1, c2);
+    bcs.linkCells(c2, c3);
+    bcs.linkCells(c3, c4);
+    bcs.linkCells(c4, c1);
+    bcs.linkCells(c5, c1);
+    bcs.linkCells(c5, c2);
+    bcs.linkCells(c5, c3);
     
     bcs.validate();
     
@@ -55,37 +55,37 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
   {
     PlayableCell cell = tested_cellspace.get_playable_cell_from_key(new NameCellKey("c4"));
     
-    for (int i = 0 ; i < cell.get_capacity() ; i++)
-      cell.add_piece(p1.new_piece());
+    for (int i = 0 ; i < cell.getCapacity() ; i++)
+      cell.addPiece(p1.new_piece());
     
-    tested_cellspace.do_all_bursts();
+    tested_cellspace.doAllBursts();
     
-    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c1")).get_pieces_count());
-    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c2")).get_pieces_count());
-    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c3")).get_pieces_count());
-    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c4")).get_pieces_count());
-    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c5")).get_pieces_count());
+    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c1")).getPiecesCount());
+    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c2")).getPiecesCount());
+    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c3")).getPiecesCount());
+    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c4")).getPiecesCount());
+    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c5")).getPiecesCount());
   }
   
   public void test_simple_burst_do_increment ()
   {
     PlayableCell cell = tested_cellspace.get_playable_cell_from_key(new NameCellKey("c4"));
     
-    for (int i = 0 ; i < cell.get_capacity() ; i++)
-      cell.add_piece(p1.new_piece());
+    for (int i = 0 ; i < cell.getCapacity() ; i++)
+      cell.addPiece(p1.new_piece());
     
-    boolean result = tested_cellspace.do_one_burst_increment();
+    boolean result = tested_cellspace.doOneBurstIncrement();
     assertTrue (result);
-    result = tested_cellspace.do_one_burst_increment();
+    result = tested_cellspace.doOneBurstIncrement();
     assertFalse(result);
-    result = tested_cellspace.do_one_burst_increment();
+    result = tested_cellspace.doOneBurstIncrement();
     assertFalse(result);
     
-    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c1")).get_pieces_count());
-    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c2")).get_pieces_count());
-    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c3")).get_pieces_count());
-    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c4")).get_pieces_count());
-    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c5")).get_pieces_count());
+    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c1")).getPiecesCount());
+    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c2")).getPiecesCount());
+    assertEquals (1, tested_cellspace.get_cell_from_key(new NameCellKey("c3")).getPiecesCount());
+    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c4")).getPiecesCount());
+    assertEquals (0, tested_cellspace.get_cell_from_key(new NameCellKey("c5")).getPiecesCount());
   }
   
   public void test_player_eats_another ()
@@ -93,66 +93,66 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
     PlayableCell cell_p1 = tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1"));
     PlayableCell cell_p2 = tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2"));
     
-    for (int i = 0 ; i < cell_p1.get_capacity() ; i++)
-      cell_p1.add_piece(p1.new_piece());
-    cell_p2.add_piece(p2.new_piece());
+    for (int i = 0 ; i < cell_p1.getCapacity() ; i++)
+      cell_p1.addPiece(p1.new_piece());
+    cell_p2.addPiece(p2.new_piece());
     
-    tested_cellspace.do_all_bursts();
+    tested_cellspace.doAllBursts();
     
     assertEquals(0, p2.get_pieces_count());
-    assertEquals(cell_p1.get_capacity()+1, p1.get_pieces_count());
+    assertEquals(cell_p1.getCapacity()+1, p1.get_pieces_count());
   }
   
   public void test_long_burst_chain ()
   {
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).add_piece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).addPiece(p1.new_piece());
     
-    tested_cellspace.do_all_bursts();
+    tested_cellspace.doAllBursts();
     
-    assertEquals(2, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).get_pieces_count());
-    assertEquals(1, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).get_pieces_count());
-    assertEquals(2, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).get_pieces_count());
-    assertEquals(1, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c4")).get_pieces_count());
-    assertEquals(0, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).get_pieces_count());
+    assertEquals(2, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
+    assertEquals(1, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).getPiecesCount());
+    assertEquals(2, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).getPiecesCount());
+    assertEquals(1, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c4")).getPiecesCount());
+    assertEquals(0, tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).getPiecesCount());
   }
   
   public void test_infinite_burst_chain_incremental ()
   {
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).add_piece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
     
     boolean result = true;
     for (int i = 0 ; i < 100 ; i++)
-      result = tested_cellspace.do_one_burst_increment();
+      result = tested_cellspace.doOneBurstIncrement();
     assertTrue(result);
   }
   
   public void test_infinite_burst_chain_stoppable ()
   {
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).add_piece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
 
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).set_listener(this);
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c5")).setListener(this);
 
     test_stop_all_bursts = true;
     
-    tested_cellspace.do_all_bursts();
+    tested_cellspace.doAllBursts();
 
     assertTrue (true);
   }
@@ -162,20 +162,20 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
     listener_trace_add_piece = false;
     listener_trace_burst = false;
     
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).set_listener(this);
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).setListener(this);
     
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
     
     assertTrue (listener_trace_add_piece);
     assertFalse (listener_trace_burst);
     
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
-    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).add_piece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+    tested_cellspace.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
         
     listener_trace_add_piece = false;
     listener_trace_burst = false;
     
-    tested_cellspace.do_all_bursts();
+    tested_cellspace.doAllBursts();
     
     assertFalse (listener_trace_add_piece);
     assertTrue (listener_trace_burst);
@@ -190,8 +190,8 @@ public class DisorderedCellSpaceTests extends TestCase implements CellListener
   @Override
   public void on_burst(Cell me)
   {
-    if (test_stop_all_bursts && me.get_key().equals(new NameCellKey("c5")))
-      tested_cellspace.stop_doing_all_bursts();
+    if (test_stop_all_bursts && me.getKey().equals(new NameCellKey("c5")))
+      tested_cellspace.stopDoingAllBursts();
     
     listener_trace_burst = true;
   }

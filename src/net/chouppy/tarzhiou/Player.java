@@ -41,7 +41,7 @@ public class Player extends ReadOnlyPlayer {
 	 */
 	public void win_a_piece (Piece this_piece)
 	{
-		assert (this_piece.get_owner().equals(this_piece));
+		assert (this_piece.getOwner().equals(this_piece));
 		
 		my_pieces.add (this_piece);
 		

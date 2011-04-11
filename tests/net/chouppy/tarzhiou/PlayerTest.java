@@ -36,7 +36,7 @@ public class PlayerTest extends TestCase implements PlayerListener {
 		
 		Piece p = tested_player.new_piece();
 		
-		assertSame (p.get_owner(), tested_player);
+		assertSame (p.getOwner(), tested_player);
 		assertEquals(1, tested_player.get_pieces_count());
 		
 		tested_player.new_piece();

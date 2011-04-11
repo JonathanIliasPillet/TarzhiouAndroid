@@ -9,14 +9,14 @@ import java.util.Iterator;
  */
 public abstract class DisorderedCellSpace extends PlayableCellSpace {
 
-	private boolean continue_bursts;
+	private boolean continueBursts;
 
 	@Override
-	public boolean do_one_burst_increment() {
+	public boolean doOneBurstIncrement() {
 		boolean result = false;
 
 		for (PlayableCell current_cell : cells) {
-			if (current_cell.is_overloaded()) {
+			if (current_cell.isOverloaded()) {
 				current_cell.burst();
 				result = true;
 			}
@@ -26,27 +26,27 @@ public abstract class DisorderedCellSpace extends PlayableCellSpace {
 	}
 
 	@Override
-	public void do_all_bursts() {
-		PlayableCell current_cell;
+	public void doAllBursts() {
+		PlayableCell currentCell;
 		// tells if there is at least one burst in a turn
-		boolean at_least_one_burst = false;
+		boolean atLeastOneBurst = false;
 
-		continue_bursts = true;
+		continueBursts = true;
 		do {
 			Iterator<PlayableCell> i = cells.iterator();
-			at_least_one_burst = false;
-			while (i.hasNext() && continue_bursts) {
-				current_cell = i.next();
-				if (current_cell.is_overloaded()) {
-					current_cell.burst();
-					at_least_one_burst = true;
+			atLeastOneBurst = false;
+			while (i.hasNext() && continueBursts) {
+				currentCell = i.next();
+				if (currentCell.isOverloaded()) {
+					currentCell.burst();
+					atLeastOneBurst = true;
 				}
 			}
-		} while (continue_bursts && at_least_one_burst);
+		} while (continueBursts && atLeastOneBurst);
 	}
 
 	@Override
-	public void stop_doing_all_bursts() {
-		continue_bursts = false;
+	public void stopDoingAllBursts() {
+		continueBursts = false;
 	}
 }

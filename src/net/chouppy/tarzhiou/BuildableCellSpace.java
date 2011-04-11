@@ -20,30 +20,30 @@ public class BuildableCellSpace
 		validated = false;
 	}
 	
-	public boolean do_one_burst_increment() {
+	public boolean doOneBurstIncrement() {
 		assert (validated);
-		return super.do_one_burst_increment();
+		return super.doOneBurstIncrement();
 	}
 	
-	public void do_all_bursts() {
+	public void doAllBursts() {
 		assert (validated);
-		super.do_all_bursts();
+		super.doAllBursts();
 	}
 	
-	public void stop_doing_all_bursts() {
+	public void stopDoingAllBursts() {
 		assert (validated);
-		super.stop_doing_all_bursts();
+		super.stopDoingAllBursts();
 	}
 	
-	public void add_cell (LinkeableCell this_cell) {
-		this_cell.set_linkeable_listener(this);
+	public void addCell (LinkeableCell thisCell) {
+		thisCell.setLinkeableListener(this);
 		validated = false;
-		super.add_cell(this_cell);
+		super.add_cell(thisCell);
 	}
 
-	public void link_cells (LinkeableCell a, LinkeableCell b) {
+	public void linkCells (LinkeableCell a, LinkeableCell b) {
 		validated = false;
-		super.link_cells(a, b);
+		super.linkCells(a, b);
 	}
 	
 	@Override

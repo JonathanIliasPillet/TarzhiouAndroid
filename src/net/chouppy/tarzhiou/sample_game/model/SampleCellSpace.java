@@ -29,36 +29,36 @@ public class SampleCellSpace extends DisorderedCellSpace {
 		add_cell(p32);
 		
 		// Center triangle link
-		c1.link_to(c2);
-		c2.link_to(c3);
-		c3.link_to(c1);
+		c1.linkTo(c2);
+		c2.linkTo(c3);
+		c3.linkTo(c1);
 		// connect peripherals to centers
-		p11.link_to(c1);
-		p12.link_to(c1);
-		p21.link_to(c2);
-		p22.link_to(c2);
-		p31.link_to(c3);
-		p32.link_to(c3);
+		p11.linkTo(c1);
+		p12.linkTo(c1);
+		p21.linkTo(c2);
+		p22.linkTo(c2);
+		p31.linkTo(c3);
+		p32.linkTo(c3);
 		// connect peripherals each other (hexagon)
-		p11.link_to(p12);
-		p12.link_to(p21);
-		p21.link_to(p22);
-		p22.link_to(p31);
-		p31.link_to(p32);
-		p32.link_to(p11);
+		p11.linkTo(p12);
+		p12.linkTo(p21);
+		p21.linkTo(p22);
+		p22.linkTo(p31);
+		p31.linkTo(p32);
+		p32.linkTo(p11);
 		
 		assert (validate ());
 	}
 	
-	public boolean do_one_burst_increment() {
-		return super.do_one_burst_increment();
+	public boolean doOneBurstIncrement() {
+		return super.doOneBurstIncrement();
 	}
 	
-	public void do_all_bursts() {
-		super.do_all_bursts();
+	public void doAllBursts() {
+		super.doAllBursts();
 	}
 	
-	public void stop_doing_all_bursts() {
-		super.stop_doing_all_bursts();
+	public void stopDoingAllBursts() {
+		super.stopDoingAllBursts();
 	}
 }

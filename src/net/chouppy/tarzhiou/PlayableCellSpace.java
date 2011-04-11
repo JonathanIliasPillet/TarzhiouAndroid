@@ -13,10 +13,10 @@ public abstract class PlayableCellSpace extends ReadOnlyCellSpace {
 	 * @return false if no burst occurred, else true (in
 	 * which case another increment should be done).
 	 */
-	public abstract boolean do_one_burst_increment ();
+	public abstract boolean doOneBurstIncrement ();
 
-	public abstract void do_all_bursts ();
-	public abstract void stop_doing_all_bursts ();
+	public abstract void doAllBursts ();
+	public abstract void stopDoingAllBursts ();
 
 	public PlayableCell get_playable_cell_from_key (CellKey this_key) {
 		return (PlayableCell)get_cell_from_key (this_key);
