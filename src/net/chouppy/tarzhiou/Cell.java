@@ -47,7 +47,7 @@ public abstract class Cell {
 	public Player get_pieces_owner ()
 	{
 		if (pieces.size() > 0)
-			return pieces.iterator().next().get_owner();
+			return (Player)pieces.iterator().next().get_owner();
 		else
 			return null;
 	}

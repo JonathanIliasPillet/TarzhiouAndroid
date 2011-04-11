@@ -12,7 +12,7 @@ public abstract class ReadOnlyPiece {
 		my_listener = null;
 	}
 	
-	public Player get_owner ()
+	public ReadOnlyPlayer get_owner ()
 	{
 		return owner;
 	}

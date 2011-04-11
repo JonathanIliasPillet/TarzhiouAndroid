@@ -56,7 +56,7 @@ public class PlayableCell extends Cell
 	{
 		// change all pieces owner
 		for (Piece current_piece : pieces ) {
-			current_piece.change_owner(this_piece.get_owner ());
+			current_piece.change_owner((Player)this_piece.get_owner ());
 		}
 		// finally adds the piece to the cell
 		pieces.add(this_piece);
