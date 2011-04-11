@@ -56,6 +56,6 @@ public class BuildableCellSpace
 
 	@Override
 	public void on_link(LinkeableCell me, LinkeableCell other) {
-		validated = false;		
+		validated = false;
 	}
 }

@@ -1,17 +1,7 @@
 package net.chouppy.tarzhiou.sample_game;
 
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.geom.Point2D;
-import java.net.URL;
-
 import javax.swing.JFrame;
 
-import net.chouppy.tarzhiou.Game;
-import net.chouppy.tarzhiou.NameCellKey;
-import net.chouppy.tarzhiou.Player;
-import net.chouppy.tarzhiou.listeners.GameListener;
 import net.chouppy.tarzhiou.sample_game.model.SampleGameModel;
 import net.chouppy.tarzhiou.sample_game.view.SampleCellSpaceViewer;
 
