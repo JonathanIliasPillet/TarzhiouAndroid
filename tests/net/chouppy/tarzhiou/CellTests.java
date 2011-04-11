@@ -85,17 +85,17 @@ public class CellTests extends TestCase implements CellListener, LinkeableCellLi
 		assertEquals(0, tested_cell.getPiecesCount());
 		assertEquals(false, tested_cell.isOverloaded());
 		
-		tested_cell.addPiece(p.new_piece());
+		tested_cell.addPiece(p.newPiece());
 		assertEquals(1, tested_cell.getPiecesCount());
 		assertEquals(false, tested_cell.isOverloaded());
 		
-		tested_cell.addPiece(p.new_piece());
-		tested_cell.addPiece(p.new_piece());
+		tested_cell.addPiece(p.newPiece());
+		tested_cell.addPiece(p.newPiece());
 		assertEquals(3, tested_cell.getPiecesCount());
 		assertEquals(true, tested_cell.isOverloaded());
 		
-		tested_cell.addPiece(p.new_piece());
-		tested_cell.addPiece(p.new_piece());
+		tested_cell.addPiece(p.newPiece());
+		tested_cell.addPiece(p.newPiece());
 		assertEquals(5, tested_cell.getPiecesCount());
 		assertEquals(true, tested_cell.isOverloaded());
 	}
@@ -104,9 +104,9 @@ public class CellTests extends TestCase implements CellListener, LinkeableCellLi
 	{
 		Player p = new Player ("1");
 		
-		tested_cell.addPiece(p.new_piece());
-		tested_cell.addPiece(p.new_piece());
-		tested_cell.addPiece(p.new_piece());
+		tested_cell.addPiece(p.newPiece());
+		tested_cell.addPiece(p.newPiece());
+		tested_cell.addPiece(p.newPiece());
 		tested_cell.burst();
 		
 		assertEquals(0, tested_cell.getPiecesCount());
@@ -124,7 +124,7 @@ public class CellTests extends TestCase implements CellListener, LinkeableCellLi
 	public void test_listener ()
 	{
 		Player p1 = new Player ("p1");
-		Piece added_piece = p1.new_piece();
+		Piece added_piece = p1.newPiece();
 		
 		tested_cell.setListener(this);
 		
@@ -137,9 +137,9 @@ public class CellTests extends TestCase implements CellListener, LinkeableCellLi
 		assertSame(added_piece, listener_piece);
 		
 		listener_add_trace = false;
-		tested_cell.addPiece(p1.new_piece());
-		tested_cell.addPiece(p1.new_piece());
-		tested_cell.addPiece(p1.new_piece());
+		tested_cell.addPiece(p1.newPiece());
+		tested_cell.addPiece(p1.newPiece());
+		tested_cell.addPiece(p1.newPiece());
 		assertTrue (listener_add_trace);
 		assertFalse (listener_burst_trace);
 		

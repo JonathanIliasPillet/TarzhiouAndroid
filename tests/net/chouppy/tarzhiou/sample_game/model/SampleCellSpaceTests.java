@@ -18,10 +18,10 @@ public class SampleCellSpaceTests extends TestCase {
 	{
 		Player p1 = new Player ("p1");
 		
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
 		tested_cell_space.doAllBursts();
 		
 		assertEquals(0, tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
@@ -39,10 +39,10 @@ public class SampleCellSpaceTests extends TestCase {
 	{
 		Player p1 = new Player ("p1");
 		
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
 		tested_cell_space.doAllBursts();
 		
 		assertEquals(1, tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
@@ -60,13 +60,13 @@ public class SampleCellSpaceTests extends TestCase {
 	{
 		Player p1 = new Player ("p1");
 
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
 		tested_cell_space.doAllBursts();
 
 		assertEquals(1, tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
@@ -84,16 +84,16 @@ public class SampleCellSpaceTests extends TestCase {
 	{
 		Player p1 = new Player ("p1");
 
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c2")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("c3")).addPiece(p1.newPiece());
 		tested_cell_space.doAllBursts();
 
 		assertEquals(2, tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
@@ -111,9 +111,9 @@ public class SampleCellSpaceTests extends TestCase {
 	{
 		Player p1 = new Player ("p1");
 
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
 		tested_cell_space.doAllBursts();
 
 		assertEquals(1, tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
@@ -131,9 +131,9 @@ public class SampleCellSpaceTests extends TestCase {
 	{
 		Player p1 = new Player ("p1");
 
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.newPiece());
 		tested_cell_space.doAllBursts();
 
 		assertEquals(0, tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
@@ -151,19 +151,19 @@ public class SampleCellSpaceTests extends TestCase {
 	{
 		Player p1 = new Player ("p1");
 
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p21")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p21")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p31")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p31")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p32")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p32")).addPiece(p1.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p21")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p21")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p22")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p31")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p31")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p32")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p32")).addPiece(p1.newPiece());
 		tested_cell_space.doAllBursts();
 
 		assertEquals(2, tested_cell_space.get_playable_cell_from_key(new NameCellKey("c1")).getPiecesCount());
@@ -182,10 +182,10 @@ public class SampleCellSpaceTests extends TestCase {
 		Player p1 = new Player ("p1");
 		Player p2 = new Player ("p2");
 
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.new_piece());
-		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).addPiece(p2.new_piece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p11")).addPiece(p1.newPiece());
+		tested_cell_space.get_playable_cell_from_key(new NameCellKey("p12")).addPiece(p2.newPiece());
 		tested_cell_space.doAllBursts();
 
 		assertEquals(4, p1.get_pieces_count());

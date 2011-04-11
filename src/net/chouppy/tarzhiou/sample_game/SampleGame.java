@@ -15,8 +15,8 @@ public class SampleGame {
 	{
 		game_model = new SampleGameModel();
 		
-		game_model.create_player("player 1");
-		game_model.create_player("player 2");
+		game_model.createPlayer("player 1");
+		game_model.createPlayer("player 2");
 		
 		game_model.start();
 

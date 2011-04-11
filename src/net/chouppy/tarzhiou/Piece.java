@@ -10,9 +10,9 @@ public class Piece extends ReadOnlyPiece {
 	public void change_owner (Player this_player)
 	{
 		Player old_owner = owner;
-		old_owner.loose_a_piece (this);
+		old_owner.looseAPiece (this);
 		owner = this_player;
-		owner.win_a_piece(this);
+		owner.winAPiece(this);
 		
 		if (my_listener != null)
 			my_listener.on_owner_changed(this, old_owner, owner);

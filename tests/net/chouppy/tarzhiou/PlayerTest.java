@@ -34,13 +34,13 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	{
 		assertEquals(0, tested_player.get_pieces_count());
 		
-		Piece p = tested_player.new_piece();
+		Piece p = tested_player.newPiece();
 		
 		assertSame (p.getOwner(), tested_player);
 		assertEquals(1, tested_player.get_pieces_count());
 		
-		tested_player.new_piece();
-		tested_player.new_piece();
+		tested_player.newPiece();
+		tested_player.newPiece();
 		assertEquals(3, tested_player.get_pieces_count());
 	}
 	
@@ -48,16 +48,16 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	{
 		assertTrue (tested_player.is_alive());
 		
-		Piece new_piece = tested_player.new_piece();
+		Piece new_piece = tested_player.newPiece();
 		assertTrue (tested_player.is_alive());
 		
 		Piece piece_won = new Piece (new Player ("other"));
-		tested_player.win_a_piece(piece_won);
+		tested_player.winAPiece(piece_won);
 		assertTrue(tested_player.is_alive());
 		
-		tested_player.loose_a_piece(new_piece);
+		tested_player.looseAPiece(new_piece);
 		assertTrue(tested_player.is_alive());
-		tested_player.loose_a_piece(piece_won);
+		tested_player.looseAPiece(piece_won);
 		assertFalse (tested_player.is_alive());
 	}
 	
@@ -65,7 +65,7 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	{
 		assertTrue (tested_player.is_alive());
 		
-		tested_player.new_piece();
+		tested_player.newPiece();
 		
 		tested_player.retract();
 		
@@ -84,13 +84,13 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	
 	public void test_listener ()
 	{
-		tested_player.set_listener(this);
+		tested_player.addListener(this);
 		
 		listener_win_trace = false;
 		listener_loose_trace = false;
 		listener_new_trace = false;
 		Piece piece_won = new Piece (tested_player);
-		tested_player.win_a_piece(piece_won);
+		tested_player.winAPiece(piece_won);
 		assertTrue (listener_win_trace);
 		assertFalse (listener_new_trace);
 		assertFalse (listener_loose_trace);
@@ -100,7 +100,7 @@ public class PlayerTest extends TestCase implements PlayerListener {
 		listener_win_trace = false;
 		listener_loose_trace = false;
 		listener_new_trace = false;
-		Piece new_piece = tested_player.new_piece();
+		Piece new_piece = tested_player.newPiece();
 		assertTrue (listener_new_trace);
 		assertFalse(listener_win_trace);
 		assertFalse(listener_loose_trace);
@@ -110,7 +110,7 @@ public class PlayerTest extends TestCase implements PlayerListener {
 		listener_win_trace = false;
 		listener_loose_trace = false;
 		listener_new_trace = false;
-		tested_player.loose_a_piece(new_piece);
+		tested_player.looseAPiece(new_piece);
 		assertTrue (listener_loose_trace);
 		assertFalse(listener_win_trace);
 		assertFalse(listener_new_trace);
@@ -119,21 +119,21 @@ public class PlayerTest extends TestCase implements PlayerListener {
 	}
 
 	@Override
-	public void on_loose_a_piece(Player me, ReadOnlyPiece thisPiece) {
+	public void onLooseAPiece(Player me, ReadOnlyPiece thisPiece) {
 		listener_loose_trace = true;
 		listener_me = me;
 		listener_this_piece = thisPiece;		
 	}
 
 	@Override
-	public void on_new_piece(Player me, ReadOnlyPiece thisPiece) {
+	public void onNewPiece(Player me, ReadOnlyPiece thisPiece) {
 		listener_new_trace = true;
 		listener_me = me;
 		listener_this_piece = thisPiece;	
 	}
 
 	@Override
-	public void on_win_a_piece(Player me, ReadOnlyPiece thisPiece) {
+	public void onWinAPiece(Player me, ReadOnlyPiece thisPiece) {
 		listener_win_trace = true;
 		listener_me = me;
 		listener_this_piece = thisPiece;	
