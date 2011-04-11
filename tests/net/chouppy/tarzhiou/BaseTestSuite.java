@@ -11,6 +11,7 @@ public class BaseTestSuite {
 		suite.addTestSuite(CellTests.class);
 		suite.addTestSuite(TestNameCellKey.class);
 		suite.addTestSuite(PlayerTest.class);
+		suite.addTestSuite(DisorderedCellSpaceTests.class);
 		//$JUnit-END$
 		return suite;
 	}
