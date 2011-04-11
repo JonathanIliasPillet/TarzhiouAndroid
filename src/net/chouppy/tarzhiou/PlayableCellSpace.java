@@ -10,8 +10,8 @@ public abstract class PlayableCellSpace extends ReadOnlyCellSpace {
 	 * if any (or all) player died. If result is true,
 	 * this means the method must be called again.
 	 * 
-	 * @return false if not burst occurred, else true (in
-	 * which case another cycle should be done).
+	 * @return false if no burst occurred, else true (in
+	 * which case another increment should be done).
 	 */
 	public abstract boolean do_one_burst_increment ();
 
