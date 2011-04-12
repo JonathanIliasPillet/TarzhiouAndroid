@@ -5,6 +5,6 @@ import net.chouppy.tarzhiou.Piece;
 
 public interface PieceListener
 {
-  public void onOwnerChanged(Piece me, Player previousOwner,
+  void onOwnerChanged(Piece me, Player previousOwner,
         Player newOwner);
 }

@@ -148,7 +148,7 @@ public abstract class Game
   {
     if (myListener != null)
     {
-      myListener.on_win(this, winner);
+      myListener.onWin(this, winner);
     }
   }
 
