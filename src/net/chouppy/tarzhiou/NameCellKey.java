@@ -1,49 +1,77 @@
 package net.chouppy.tarzhiou;
 
+/**
+ * String key for a cell
+ * 
+ * @author Jonathan ILIAS-PILLET
+ */
 public class NameCellKey extends CellKey
 {
-  private String my_name;
+  private String myName;
 
-  private NameCellKey()
-  {
-  }
-
+  /**
+   * Builds a cell key with a name
+   * 
+   * @param name
+   *          name of the cell key
+   */
   public NameCellKey(String name)
   {
-    my_name = name;
+    myName = name;
   }
 
+  /**
+   * Returns the name of the cell key
+   */
   public String toString()
   {
-    return new String(my_name);
+    return myName;
   }
 
   @Override
-  public Object clone()
+  public Object clone() throws CloneNotSupportedException
   {
-    NameCellKey result = new NameCellKey();
-    result.my_name = new String(my_name);
+    NameCellKey result = (NameCellKey) super.clone();
+
+    result.myName = myName;
+
     return result;
   }
 
   @Override
   public int hashCode()
   {
-    return my_name.hashCode();
+    return myName.hashCode();
   }
 
   @Override
   public boolean equals(Object o)
   {
+    boolean result;
+
     if (o == null)
-      return false;
+    {
+      result = false;
+    }
     else
+    {
       if (!(o instanceof NameCellKey))
-        return false;
+      {
+        result = false;
+      }
       else
+      {
         if (o.hashCode() == hashCode())
-          return true;
+        {
+          result = true;
+        }
         else
-          return false;
+        {
+          result = false;
+        }
+      }
+    }
+
+    return result;
   }
 }

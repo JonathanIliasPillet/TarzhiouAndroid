@@ -38,7 +38,14 @@ public abstract class Cell
   {
     myNeighbors = new LinkedHashSet<Cell>();
     myPieces = new LinkedHashSet<Piece>();
-    myKey = (CellKey) thisKey.clone();
+    try
+    {
+      myKey = (CellKey) thisKey.clone();
+    }
+    catch (CloneNotSupportedException e)
+    {
+      assert false : "internal error : cannot clone a cloneable ?";
+    }
     myListeners = new LinkedList<CellListener>();
   }
 
@@ -163,7 +170,18 @@ public abstract class Cell
    */
   public CellKey getKey()
   {
-    return (CellKey) myKey.clone();
+    CellKey result = null;
+    
+    try
+    {
+      result = (CellKey) myKey.clone();  
+    }
+    catch (CloneNotSupportedException e)
+    {
+      assert false : "internal error : cannot clone a cloneable ?";
+    }
+
+    return result;
   }
 
   /**
