@@ -46,7 +46,7 @@ public abstract class Game
   /**
    * List of listeners
    */
-  private LinkedList<GameListener> myListeners;
+  private List<GameListener> myListeners;
 
   /**
    * Builds an empty game (no cell space and no players).
@@ -75,6 +75,7 @@ public abstract class Game
   public final ReadOnlyCellSpace getCellSpaceView()
   {
     assert myCellSpace != null;
+    assert gameIsStarted;
 
     return myCellSpace;
   }
@@ -135,14 +136,14 @@ public abstract class Game
   {
     boolean result;
 
-    assert (myCellSpace != null);
-    assert (gameIsStarted);
+    assert myCellSpace != null;
+    assert gameIsStarted;
 
-    Cell this_cell = myCellSpace.getCellFromKey(thisCellKey);
+    Cell thisCell = myCellSpace.getCellFromKey(thisCellKey);
 
-    if (this_cell != null)
+    if (thisCell != null)
     {
-      result = play(this_cell, thisPlayer);
+      result = play(thisCell, thisPlayer);
     }
     else
     {
@@ -158,7 +159,7 @@ public abstract class Game
    * @param thisListener
    *          the listener
    */
-  public void addListener(GameListener thisListener)
+  public final void addListener(GameListener thisListener)
   {
     assert thisListener != null;
 
@@ -174,6 +175,8 @@ public abstract class Game
    */
   public Player getCurrentPlayer()
   {
+    assert gameIsStarted;
+    
     return currentPlayer;
   }
 
@@ -200,11 +203,15 @@ public abstract class Game
     {
       currentPlayer = playerTurn.next();
       if (!currentPlayer.isAlive())
+      {
         nextPlayer();
+      }
       assert (currentPlayer != null);
     }
     else
+    {
       selectFirstPlayer();
+    }
   }
 
   /**
@@ -213,10 +220,12 @@ public abstract class Game
    */
   private void selectFirstPlayer()
   {
-    playerTurn = getPlayers().iterator();
+    playerTurn = myPlayers.iterator();
     currentPlayer = playerTurn.next();
     if (!currentPlayer.isAlive())
+    {
       nextPlayer();
+    }
     assert (currentPlayer != null);
   }
 
@@ -225,14 +234,16 @@ public abstract class Game
    * 
    * @return number of alive players
    */
-  protected int countAlivePlayers()
+  protected final int countAlivePlayers()
   {
     int result = 0;
 
-    for (Player current_player : myPlayers)
+    for (Player aPlayer : myPlayers)
     {
-      if (current_player.isAlive())
+      if (aPlayer.isAlive())
+      {
         result++;
+      }
     }
 
     return result;
@@ -244,7 +255,7 @@ public abstract class Game
    * 
    * @return reference to the player
    */
-  protected Player getAnAlivePlayer()
+  protected final Player getAnAlivePlayer()
   {
     Iterator<Player> i = myPlayers.iterator();
     Player result = null;
@@ -253,7 +264,9 @@ public abstract class Game
     {
       Player current = i.next();
       if (current.isAlive())
+      {
         result = current;
+      }
     }
 
     assert (result != null);
@@ -268,7 +281,7 @@ public abstract class Game
    */
   protected void win(Player winner)
   {
-    assert gameIsStarted == true;
+    assert gameIsStarted;
 
     for (GameListener listener : myListeners)
     {
@@ -289,7 +302,7 @@ public abstract class Game
   protected void setCellSpace(PlayableCellSpace thisCellSpace)
   {
     assert thisCellSpace != null;
-    assert gameIsStarted == false;
+    assert !gameIsStarted;
 
     myCellSpace = thisCellSpace;
   }
@@ -298,8 +311,6 @@ public abstract class Game
    * gives the associated cell space reference
    * 
    * @return the cell space reference
-   * 
-   * @deprecated
    */
   protected PlayableCellSpace getCellSpace()
   {
@@ -313,20 +324,8 @@ public abstract class Game
    */
   protected void addPlayer(Player thisPlayer)
   {
-    assert gameIsStarted == false;
+    assert !gameIsStarted;
     
     myPlayers.add(thisPlayer);
-  }
-
-  /**
-   * Gives the full list of players
-   * 
-   * @return the list of playes
-   * 
-   * @deprecated
-   */
-  protected List<Player> getPlayers()
-  {
-    return myPlayers;
   }
 }
