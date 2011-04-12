@@ -31,9 +31,11 @@ public class SampleGameModel extends Game implements PlayerListener
   @Override
   public void onLooseAPiece(Player me, Piece thisPiece)
   {
+    assert me != null : "me cannot be null";
+
     if (!me.isAlive())
     {
-      System.out.println(me.toString() + " died");
+      System.out.println(me.toString() + " died"); // FIXME: remove this
 
       if (countAlivePlayers() == 1)
       {

@@ -217,8 +217,25 @@ public abstract class Cell
   /**
    * Return the hashCode of the CellKey
    */
+  @Override
   public int hashCode()
   {
     return myKey.hashCode();
+  }
+
+  @Override
+  public boolean equals (Object o)
+  {
+    boolean result = false;
+
+    if (o != null)
+    {
+      if (o instanceof Cell)
+      {
+        result = ((Cell) o).myKey.equals(myKey);
+      }
+    }
+
+    return result;
   }
 }
