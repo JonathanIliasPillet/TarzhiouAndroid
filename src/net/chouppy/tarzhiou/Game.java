@@ -1,97 +1,199 @@
 package net.chouppy.tarzhiou;
 
 import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 import net.chouppy.tarzhiou.listeners.GameListener;
 
+/**
+ * This abstract class represents basically what is a game.
+ * 
+ * It should be derived to take into account cell space characteristics and some
+ * other features.
+ * 
+ * @author Jonathan ILIAS-PILLET
+ */
 public abstract class Game
 {
-  private PlayableCellSpace myCellSpace = null;
+  /**
+   * The related cell space
+   */
+  private PlayableCellSpace myCellSpace;
 
-  private Set<Player> myPlayers;
+  /**
+   * Set of all players in the game
+   */
+  private List<Player> myPlayers;
 
-  private boolean started;
-
-  private GameListener myListener;
-
+  /**
+   * The player whom we're waiting to play
+   */
   private Player currentPlayer;
 
+  /**
+   * Player iterator
+   */
   private Iterator<Player> playerTurn;
 
+  /**
+   * Tells if the game is started or is being built
+   * 
+   * (true if game is started)
+   */
+  private boolean gameIsStarted;
+
+  /**
+   * List of listeners
+   */
+  private LinkedList<GameListener> myListeners;
+
+  /**
+   * Builds an empty game (no cell space and no players).
+   * 
+   * Game is initially not started
+   */
   protected Game()
   {
-    myPlayers = new LinkedHashSet<Player>();
-    started = false;
-    myListener = null;
+    myCellSpace = null;
+    myPlayers = new LinkedList<Player>();
+    gameIsStarted = false;
+    myListeners = new LinkedList<GameListener>();
   }
 
-  public ReadOnlyCellSpace get_cell_space_view()
+  /**
+   * Returns a read-only reference of the cell space.
+   * 
+   * This is especially useful for views which needs to draw fully the space
+   * (not only at each change).
+   * 
+   * @warning the cell space is not a copy, but a reference. It not
+   *          synchronized.
+   * 
+   * @return the read only reference to the cell space
+   */
+  public final ReadOnlyCellSpace getCellSpaceView()
   {
-    assert (myCellSpace != null);
+    assert myCellSpace != null;
+
     return myCellSpace;
   }
 
-  public boolean play(Cell this_cell, Player this_player)
+  /**
+   * A player plays on a given cell.
+   * 
+   * @param thisCell
+   *          the given cell
+   * @param thisPlayer
+   *          the player which plays
+   * 
+   * @return false if playing is refused (cell not free, ...), true if playing
+   *         is accepted
+   */
+  public final boolean play(Cell thisCell, Player thisPlayer)
   {
-    assert (myCellSpace != null);
-    assert (started);
+    assert myCellSpace != null;
+    assert gameIsStarted;
+    assert (thisCell instanceof PlayableCell);
 
     boolean result;
 
-    if ((this_cell.getPiecesCount() == 0)
-          || this_player.equals(this_cell.getPiecesOwner()))
+    if ((thisCell.getPiecesCount() == 0)
+          || thisPlayer.equals(thisCell.getPiecesOwner()))
     {
-      // adds the new piece 
-      assert (this_cell instanceof PlayableCell);
-      ((PlayableCell) this_cell).addPiece(this_player.newPiece());
+      // adds the new piece
+      ((PlayableCell) thisCell).addPiece(thisPlayer.newPiece());
 
-      // do bursts
+      // do bursts (abstract method, implemented in subclass)
       processBursts();
 
       // jump to next player
       nextPlayer();
 
+      // all went well, returns true
       result = true;
     }
     else
+    {
       result = false;
+    }
 
     return result;
   }
 
-  public boolean play(CellKey this_cell_key, Player this_player)
+  /**
+   * Like {@link #play(Cell, Player)} but the cell is referred to by its key
+   * 
+   * @param thisCellKey
+   *          key of the wanted cell
+   * @param thisPlayer
+   *          playing player
+   * 
+   * @return true if playing is accepted, otherwise false
+   */
+  public final boolean play(CellKey thisCellKey, Player thisPlayer)
   {
+    boolean result;
+
     assert (myCellSpace != null);
-    assert (started);
-    Cell this_cell = myCellSpace.getCellFromKey(this_cell_key);
+    assert (gameIsStarted);
+
+    Cell this_cell = myCellSpace.getCellFromKey(thisCellKey);
 
     if (this_cell != null)
-      return play(this_cell, this_player);
+    {
+      result = play(this_cell, thisPlayer);
+    }
     else
-      return false;
+    {
+      result = false;
+    }
+
+    return result;
   }
 
-  public void start()
+  /**
+   * Adds a listener
+   * 
+   * @param thisListener
+   *          the listener
+   */
+  public void addListener(GameListener thisListener)
   {
-    assert (myPlayers.size() > 1);
-    selectFirstPlayer();
-    started = true;
+    assert thisListener != null;
+
+    myListeners.add(thisListener);
   }
 
-  public void setListener(GameListener this_listener)
-  {
-    myListener = this_listener;
-  }
-
-  protected abstract void processBursts();
-
-  public Player get_current_player()
+  /**
+   * gives a reference to the player we are waiting to play
+   * 
+   * @warning this is not a copy of the player but a reference to it.
+   * 
+   * @return reference to the player
+   */
+  public Player getCurrentPlayer()
   {
     return currentPlayer;
   }
 
+  /**
+   * Starts the game. Actions such playing are now enabled. Modifying the game
+   * is no longer allowed.
+   */
+  protected void start()
+  {
+    assert myPlayers.size() > 1;
+
+    selectFirstPlayer();
+    gameIsStarted = true;
+  }
+
+  /**
+   * Internally jumps to next player
+   * 
+   * See {@link #getCurrentPlayer()}
+   */
   protected void nextPlayer()
   {
     if (playerTurn.hasNext())
@@ -105,7 +207,11 @@ public abstract class Game
       selectFirstPlayer();
   }
 
-  protected void selectFirstPlayer()
+  /**
+   * Selects the first player. Useful when starting the
+   * game or when the end of the player list has been reached
+   */
+  private void selectFirstPlayer()
   {
     playerTurn = getPlayers().iterator();
     currentPlayer = playerTurn.next();
@@ -114,7 +220,12 @@ public abstract class Game
     assert (currentPlayer != null);
   }
 
-  protected int countAlivePlayers ()
+  /**
+   * Gives the number of still alive players
+   * 
+   * @return number of alive players
+   */
+  protected int countAlivePlayers()
   {
     int result = 0;
 
@@ -127,6 +238,12 @@ public abstract class Game
     return result;
   }
 
+  /**
+   * Returns any alive player. Mainly used to get the winner, when
+   * we know she is the last player.
+   * 
+   * @return reference to the player
+   */
   protected Player getAnAlivePlayer()
   {
     Iterator<Player> i = myPlayers.iterator();
@@ -144,33 +261,71 @@ public abstract class Game
     return result;
   }
 
+  /**
+   * Tells the game has been won (calls the listener)
+   * 
+   * @param winner the player who won the game
+   */
   protected void win(Player winner)
   {
-    if (myListener != null)
+    assert gameIsStarted == true;
+
+    for (GameListener listener : myListeners)
     {
-      myListener.onWin(this, winner);
+      listener.onWin(this, winner);
     }
   }
 
+  /**
+   * Called to process all existing bursts, and maybe declare the winner (if any)
+   */
+  protected abstract void processBursts();
+
+  /**
+   * sets the cell space
+   * 
+   * @param thisCellSpace the cell space to set
+   */
   protected void setCellSpace(PlayableCellSpace thisCellSpace)
   {
-    assert (thisCellSpace != null);
-    assert (started = false);
+    assert thisCellSpace != null;
+    assert gameIsStarted == false;
 
     myCellSpace = thisCellSpace;
   }
 
+  /**
+   * gives the associated cell space reference
+   * 
+   * @return the cell space reference
+   * 
+   * @deprecated
+   */
   protected PlayableCellSpace getCellSpace()
   {
     return myCellSpace;
   }
 
+  /**
+   * Adds another player to the game
+   * 
+   * @param thisPlayer the player to be added
+   */
   protected void addPlayer(Player thisPlayer)
   {
+    assert gameIsStarted == false;
+    
     myPlayers.add(thisPlayer);
   }
 
-  protected Set<Player> getPlayers()
+  /**
+   * Gives the full list of players
+   * 
+   * @return the list of playes
+   * 
+   * @deprecated
+   */
+  protected List<Player> getPlayers()
   {
     return myPlayers;
   }

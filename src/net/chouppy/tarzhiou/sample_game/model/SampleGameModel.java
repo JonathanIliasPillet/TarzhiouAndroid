@@ -22,6 +22,11 @@ public class SampleGameModel extends Game implements PlayerListener
     p.addListener(this);
   }
 
+  public void start ()
+  {
+    super.start ();
+  }
+  
   @Override
   protected void processBursts()
   {
