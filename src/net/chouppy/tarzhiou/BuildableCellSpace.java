@@ -80,7 +80,6 @@ public class BuildableCellSpace extends DisorderedCellSpace implements
     return validated;
   }
 
-  @Override
   public void onLink(LinkeableCell me, LinkeableCell other)
   {
     validated = false;
