@@ -4,5 +4,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/LibTarzhiouAndroid"/>
+	<classpathentry kind="src" path="LibTarzhiouAndroid_src"/>
+	<classpathentry kind="src" path="LibTarzhiouAndroid_tests"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
