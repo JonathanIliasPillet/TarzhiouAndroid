@@ -6,59 +6,59 @@
 	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell1" android:layout_height="wrap_content"
+		cellname="cell1" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell1"
 		android:src="@drawable/cell" android:layout_alignParentLeft="true"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell3" android:layout_height="wrap_content"
+		cellname="cell3" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell3"
 		android:src="@drawable/cell" android:layout_below="@+id/cell1"
 		android:layout_alignLeft="@+id/cell1" android:layout_alignRight="@+id/cell1"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell5" android:layout_height="wrap_content"
+		cellname="cell5" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell5"
 		android:src="@drawable/cell" android:layout_below="@+id/cell3"
 		android:layout_alignLeft="@+id/cell3" android:layout_alignRight="@+id/cell3"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell6" android:layout_height="wrap_content"
+		cellname="cell6" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell6"
 		android:src="@drawable/cell" android:layout_toRightOf="@+id/cell5"
 		android:layout_alignTop="@+id/cell5" android:layout_alignBottom="@+id/cell5"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell7" android:layout_height="wrap_content"
+		cellname="cell7" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell7"
 		android:src="@drawable/cell" android:layout_toRightOf="@+id/cell6"
 		android:layout_alignTop="@+id/cell6" android:layout_alignBottom="@+id/cell6"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell4" android:layout_height="wrap_content"
+		cellname="cell4" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell4"
 		android:src="@drawable/cell" android:layout_toRightOf="@+id/cell3"
 		android:layout_alignTop="@+id/cell3" android:layout_alignBottom="@+id/cell3"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell2" android:layout_height="wrap_content"
+		cellname="cell2" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell2"
 		android:src="@drawable/cell" android:layout_above="@+id/cell4"
 		android:layout_toRightOf="@+id/cell4" android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell8" android:layout_height="wrap_content"
+		cellname="cell8" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell8"
 		android:src="@drawable/cell" android:layout_below="@+id/cell6"
 		android:layout_alignLeft="@+id/cell6" android:layout_alignRight="@+id/cell6"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell9" android:layout_height="wrap_content"
+		cellname="cell9" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell9"
 		android:src="@drawable/cell" android:layout_toRightOf="@+id/cell8"
 		android:layout_alignTop="@+id/cell8" android:layout_alignBottom="@+id/cell8"
 		android:onClick="onCellClick"></net.chouppy.tarzhiou.android.view.CellView>
 	<net.chouppy.tarzhiou.android.view.CellView
-		android:name="cell10" android:layout_height="wrap_content"
+		cellname="cell10" android:layout_height="wrap_content"
 		android:layout_width="wrap_content" android:id="@+id/cell10"
 		android:src="@drawable/cell" android:layout_below="@+id/cell9"
 		android:layout_alignLeft="@+id/cell9" android:layout_alignRight="@+id/cell9"
